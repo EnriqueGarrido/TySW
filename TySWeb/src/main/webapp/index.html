@@ -11,34 +11,30 @@
 
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<div class="principal">
-		<div class="header">
-			<div class=header-content>
-				<p>Alias</p>
-			</div>
-			<div class=header-content>
-				<p>Recuadro</p>
-			</div>
-			<div class=header-content>
-				<p>Recuadro2</p>
-			</div>
-		</div>
-		<div class="content">
-			<div class="content-text">
-				<h3>LOS CRACK GAMES</h3>
-				<p><strong>Login</strong></p>
-			</div>
-			<div class="content-form">
-				<form>
-					<input type="text" id="UserName" placeholder="user name" value="User"><br>
-					<input type="password" id="Pwd" placeholder="password" value="User123"><br>
-					<div class="inside-form">
-						<p>Don't you have account <a href="registryPrueba.html">Registry</a></p>
-						<button onclick="login()">Go!</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+	<div class="login-page">
+	<h1 align="center">LOS CRACKS GAMES</h1>
+  <div class="form">
+    <form class="register-form">
+      <input type="text" placeholder="name"/>
+      <input type="password" placeholder="password"/>
+      <input type="text" placeholder="email address"/>
+      <button>create</button>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+    <form class="login-form">
+      <input type="text" placeholder="username"/>
+      <input type="password" placeholder="password"/>
+      <button>login</button>
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+    <p class="recover">Forgot your Password? <a href="recoverPassword.html">Recover it!</a></p>
+  </div>
+</div>
+
+<script>
+$('.message a').click(function(){
+	   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+	});
+</script>
 </body>
 		</html>
