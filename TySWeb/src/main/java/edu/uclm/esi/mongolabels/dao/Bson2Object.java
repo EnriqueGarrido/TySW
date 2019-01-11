@@ -36,8 +36,8 @@ public class Bson2Object {
 		
 		if (bso.containsKey("isFK")) {
 			ObjectId _id=bso.getObjectId("_id").getValue();
-			Object containedObject=MongoBroker.get().load(className, _id);
-			object=containedObject;
+			//Object containedObject=MongoBroker.get().load(className, _id);
+			//object=containedObject;
 		} else {
 			Hashtable<String, Field> classFields = Common.getFields(clazz);
 			Iterator<String> bsonFieldNames = bso.keySet().iterator();

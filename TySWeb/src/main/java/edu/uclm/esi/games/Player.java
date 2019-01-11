@@ -41,8 +41,9 @@ public class Player {
 	public static Player identify(String userName, String pwd) throws Exception {
 		BsonDocument criterion=new BsonDocument();
 		criterion.append("userName", new BsonString(userName)).put("pwd", new BsonString(pwd));
-		Player player=(Player) MongoBroker.get().loadOne(Player.class, criterion);
-		return player;
+		//Player player=(Player) MongoBroker.getBD().loadOne(Player.class, criterion);
+		//return player;
+		return null;
 	}
 
 	public static Player register(String email, String userName, String pwd) throws Exception {
@@ -50,7 +51,7 @@ public class Player {
 		player.setEmail(email);
 		player.setUserName(userName);
 		player.setPwd(pwd);
-		MongoBroker.get().insert(player);
+		//MongoBroker.get().insert(player);
 		return player;
 	}
 
