@@ -32,7 +32,7 @@ public class Pool {
 		        ServerAddress address = new ServerAddress(url);
 		        //List<MongoCredential> lista = Arrays.asList(credenciales);
 		        //serverUri="mongodb://" + user + ":" + pwd + "@localhost:27017/games";
-		        serverUri="mongodb://localhost:27017/games";
+		        serverUri="mongodb://userGames:passwordGames@cluster0-shard-00-00-ofhzj.mongodb.net:27017,cluster0-shard-00-01-ofhzj.mongodb.net:27017,cluster0-shard-00-02-ofhzj.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true";
 		        MongoClientURI clientUri=new MongoClientURI(this.serverUri);
 				bd=new MongoClient(clientUri);
 		        //bd =  new MongoClient(address, lista);
