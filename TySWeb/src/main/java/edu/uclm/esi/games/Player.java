@@ -34,7 +34,8 @@ public class Player {
 		this.email = email;
 	}
 	
-	private void setPwd(String pwd) {
+	// Change to private
+	public void setPwd(String pwd) {
 		this.pwd=pwd;
 	}
 

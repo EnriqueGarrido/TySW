@@ -26,6 +26,6 @@ function login(){
             email:Nombre.value, pwd1:pass.value
     };
     request.send("p="+JSON.stringify(p));
-    sleep(1000);
+    //sleep(1000);
 
 }
