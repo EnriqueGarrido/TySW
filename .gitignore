@@ -25,3 +25,6 @@ hs_err_pid*
 /.recommenders/
 
 /Servers/
+
+
+TySWeb_Practica/\.classpath
