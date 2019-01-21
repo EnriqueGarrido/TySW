@@ -1,5 +1,7 @@
 package edu.uclm.esi.tysweb.games;
 
+import edu.uclm.esi.tysweb.mongobd.dao.DAOPlayer;
+
 public class Player {
 	
 	private String user_name;
@@ -24,5 +26,14 @@ public class Player {
 	public String getUserName() {
 		return user_name;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public Player login(String email, String pwd)throws Exception {
+        return DAOPlayer.login(email,pwd);
+    	//return null;
+     }
 	
 }
