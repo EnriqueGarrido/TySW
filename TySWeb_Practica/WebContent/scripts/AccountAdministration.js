@@ -12,7 +12,7 @@ function login(){
             var respuesta = JSON.parse(request.responseText);
             if(respuesta.result ==="OK"){	
             	
-            	localStorage.nombre = respuesta.nombre;
+            	localStorage.name = respuesta.nombre;
             	localStorage.email = respuesta.email;
             	
             	location.href="GameSelection.html";
@@ -25,6 +25,6 @@ function login(){
             email:Nombre.value, pwd1:pass.value
     };
     request.send("p="+JSON.stringify(p));
-    sleep(30000);
+    //sleep(30000);
 
 }

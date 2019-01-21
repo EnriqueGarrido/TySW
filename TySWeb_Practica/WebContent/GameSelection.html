@@ -3,9 +3,34 @@
 <head>
 <meta charset="utf-8">
 <title>Game Selection</title>
+<link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-Seleccione el juego que desea jugar
-
+	<div class="login-page">
+		<h1 align="center">THE CRACKS GAMES</h1>
+		<div class="form">
+			<form>
+				<img id="img-user" src="img/user.png">
+				<p id="user-name"></p>
+				<button class="game-selection">Play PPT</button>
+				<button class="game-selection">Play SUDOKU</button>
+			</form>
+			<p class="message">
+				<a href="index.html" onclick="logout()">Log out</a>
+			</p>
+		</div>
+	</div>
+	
+	<script>
+		window.onload = function(){
+			var user_name_text = document.getElementById("user-name");
+			user_name_text.innerHTML = localStorage.name;
+		}
+		
+		function logout(){
+			localStorage.name = "";
+		}
+	</script>
+	
 </body>
 </html>
