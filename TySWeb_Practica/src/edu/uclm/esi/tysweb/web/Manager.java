@@ -19,4 +19,13 @@ public class Manager {
 		return usuario;
 	}
 	
+	public void register(String email, String pwd, String user) throws Exception {
+		Player usuario=new Player();
+		usuario.setEmail(email);
+		usuario.setUserName(user);
+		//usuario.setScore(0);
+		//usuario.setPhoto("profile/default.png");
+		usuario.insert(pwd);
+	}
+	
 }

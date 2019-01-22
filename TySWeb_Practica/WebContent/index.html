@@ -15,16 +15,18 @@
 		<h1 align="center">THE CRACKS GAMES</h1>
 		<div class="form">
 			<form class="register-form">
-				<input type="text" placeholder="name" /> <input type="password"
-					placeholder="password" /> <input type="text"
-					placeholder="email address" />
-				<button>create</button>
+				<input id="register_email" type="text" placeholder="Email Address" />
+				<input id="register_name" type="text" placeholder="Name" /> 
+				<input id="register_pwd" type="password" placeholder="Password" /> 	
+				<input id="register_pwd1" type="password" placeholder="Repeat Password" />
+				<p class="warning-message" id="register-warning-message"></p> 	
+				<button onclick="register()">create</button>
 				<p class="message">
 					Already registered? <a href="#">Sign In</a>
 				</p>
 			</form>
 			<form class="login-form">
-				<input id="Nombre" type="text" placeholder="username" /> 
+				<input id="email" type="text" placeholder="username" /> 
 				<input id="pass" type="password" placeholder="password" />
 				<p class="warning-message" id="login-warning-message"></p>
 				<button onclick="login()">login</button>

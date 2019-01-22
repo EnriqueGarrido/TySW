@@ -33,7 +33,10 @@ public class Player {
 	
 	public Player login(String email, String pwd)throws Exception {
         return DAOPlayer.login(email,pwd);
-    	//return null;
      }
+	
+	public void insert(String pwd) throws Exception {
+		DAOPlayer.insert(this, pwd);
+	}
 	
 }

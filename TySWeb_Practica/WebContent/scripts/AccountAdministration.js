@@ -17,14 +17,45 @@ function login(){
             	
             	location.href="GameSelection.html";
             }else{
-            	location.href="RecoverPassword.html";
+            	var error_text = document.getElementById("login-warning-message");
+            	var pwd_text = document.getElementById("pass");
+            	error_text.innerHTML = "Error loging in.";
+            	error_text.setAttribute("style", "display:block");
+            	pwd_text.value = "";
             }
         }
     };
     var p = {
-            email:Nombre.value, pwd1:pass.value
+            email:email.value, pwd1:pass.value
     };
     request.send("p="+JSON.stringify(p));
-    //sleep(30000);
+}
 
+function register(){
+	var request = new XMLHttpRequest();
+	request.open("post", "servers/register.jsp");
+	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	request.onreadystatechange=function(){
+		if(request.readyState == 4) {
+			var response = JSON.parse(request.responseText);
+			if(response.result == "OK"){
+				location.href = "index.html";
+				var error_text = document.getElementById("login-warning-message");
+				error_text.innerHTML = "Login Successful. Please, login to continue.";
+            	error_text.setAttribute("style", "display:block");
+            	error_text.setAttribute("style", "color:#4CAF50");
+			}else{
+				var error_text = document.getElementById("register-warning-message");
+				error_text.innerHTML = response.mensaje;
+				error_text.setAttribute("style", "display:block");
+			}
+		}
+	}
+	var p = {
+		email: register_email.value,
+		name: register_name.value,
+		pwd1: register_pwd.value,
+		pwd2: register_pwd1.value
+	};
+	request.send("p="+JSON.stringify(p));
 }

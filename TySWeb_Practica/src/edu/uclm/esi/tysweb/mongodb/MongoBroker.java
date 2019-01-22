@@ -7,7 +7,7 @@ public class MongoBroker {
 	private Pool pool;
 
 	private MongoBroker() {
-		this.pool=new Pool(15);
+		this.pool=new Pool(13);
 	}
 	
 	private static class MongoBrokeHolder{
