@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+
+.rps-game {
+	width:100%;
+	margin: auto;
+}
+
+.game-tittle {
+	margin: 0 0 0px;
+	padding: 0;
+	font-size: 50px;
+	font-weight: bold;
+	color: #1a1a1a;
+}
+
+.rps_state {
+	/*background-color: black;*/
+	padding: 15px;
+}
+
+.rps_score {
+	margin: 20px;
+	width: 300px;
+	padding: 5px;
+	/*background-color: white;*/
+}
+
+.rps_score p{
+	font-family: "Dosis", sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.rps_score .score{
+	margin: auto;
+	width: 150px;
+	height: 150px;
+	/*background-color: red;*/
+}
+
+body {
+	background: #76b852; /* fallback for old browsers */
+	background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+	background: -moz-linear-gradient(right, #76b852, #8DC26F);
+	background: -o-linear-gradient(right, #76b852, #8DC26F);
+	background: linear-gradient(to left, #76b852, #8DC26F);
+	font-family: "Dosis", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
