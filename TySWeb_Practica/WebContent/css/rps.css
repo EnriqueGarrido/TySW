@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis');
 
 .rps-game {
-	width:100%;
+	width: 100%;
 	margin: auto;
 }
-
+/*
 #Paper {
-	width: 200px;
+	width: 12%;
 }
 
 #Rock {
-	width: 200px;
+	width: 12%;
 }
 
 #Scissors {
-	width: 200px;
-}
+	width: 12%;
+}*/
 
 .game-tittle {
 	margin: 0 0 0px;
@@ -26,39 +26,84 @@
 }
 
 .rps_state {
-	background-color: yellow;
+	/*background-color: yellow;*/
 	padding: 15px;
+}
+
+.rps_move {
+	width: 75%;
+	display: inline-block;
+	/*background-color: red;*/
+	/*margin-left: 10px;*/
+	margin: auto;
+	margin-top: 10px;
+}
+
+.versus {
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.player_move {
+	width: 60%;
+	height: 200px;;
+	margin: auto;
+	background-color: white;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0
+		rgba(0, 0, 0, 0.24);
 }
 
 .rps_score {
 	margin: 20px;
-	width: 300px;
+	width: 10%;
 	padding: 5px;
-	background-color: white;
+	/*background-color: white;*/
+	display: inline-block;
 }
 
 .rps_options {
-	margin:50px;
-	width: 1000px;
-	background-color: blue;
+	margin: 28%;
+	/*margin-left: 350px;*/
+	/*margin-left: 25%;*/
+	margin-top: 20px;
+	width: 70%;
+	/*background-color: blue;*/
 }
 
-.rps_options img{
-	margin: 0 40px;
+.rps_options img {
+	margin-right: 11%;
+	width: 12%;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0
+		rgba(0, 0, 0, 0.24);
 }
 
-.rps_score p{
+.rps_score p {
 	font-family: "Dosis", sans-serif;
 	font-size: 20px;
 	font-weight: bold;
 	text-align: center;
 }
 
-.rps_score .score{
+.rps_score .score {
 	margin: auto;
-	width: 150px;
-	height: 150px;
-	background-color: red;
+	width: 100px;
+	height: 100px;;
+	/*background-color: red;*/
+	background-color: white;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0
+		rgba(0, 0, 0, 0.24);
+}
+
+.score_display {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.move_election{
+	font-size: 30px;
+	text-align: center;
+	vertical-align: middle;
 }
 
 body {
