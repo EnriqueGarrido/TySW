@@ -5,6 +5,18 @@
 	margin: auto;
 }
 
+#Paper {
+	width: 200px;
+}
+
+#Rock {
+	width: 200px;
+}
+
+#Scissors {
+	width: 200px;
+}
+
 .game-tittle {
 	margin: 0 0 0px;
 	padding: 0;
@@ -14,7 +26,7 @@
 }
 
 .rps_state {
-	/*background-color: black;*/
+	background-color: yellow;
 	padding: 15px;
 }
 
@@ -22,7 +34,17 @@
 	margin: 20px;
 	width: 300px;
 	padding: 5px;
-	/*background-color: white;*/
+	background-color: white;
+}
+
+.rps_options {
+	margin:50px;
+	width: 1000px;
+	background-color: blue;
+}
+
+.rps_options img{
+	margin: 0 40px;
 }
 
 .rps_score p{
@@ -36,7 +58,7 @@
 	margin: auto;
 	width: 150px;
 	height: 150px;
-	/*background-color: red;*/
+	background-color: red;
 }
 
 body {
