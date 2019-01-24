@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+
+.game-tittle {
+	margin: 0 0 0px;
+	padding: 0;
+	font-size: 50px;
+	font-weight: bold;
+	color: #1a1a1a;
+}
+
+.rps_state {
+	background-color: yellow;
+	padding: 15px;
+}
+
+.rps_move {
+	width: 75%;
+	display: inline-block;
+	background-color: red;
+	/*margin-left: 10px;*/
+	margin: auto;
+	margin-top: 10px;
+}
+
+.rps_score {
+	margin: 20px;
+	width: 10%;
+	padding: 5px;
+	/*background-color: white;*/
+	display: inline-block;
+}
+
+.rps_options {
+	margin: 28%;
+	/*margin-left: 350px;*/
+	/*margin-left: 25%;*/
+	margin-top: 20px;
+	width: 70%;
+	/*background-color: blue;*/
+}
+
+.rps_score p {
+	font-family: "Dosis", sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.rps_move p {
+	font-family: "Dosis", sans-serif;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.rps_score .score {
+	margin: auto;
+	width: 100px;
+	height: 100px;;
+	/*background-color: red;*/
+	background-color: white;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0
+		rgba(0, 0, 0, 0.24);
+}
+
+.rps_move .letter{
+	margin: auto;
+	width: 50px;
+	height: 50px;;
+	/*background-color: red;*/
+	background-color: white;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0
+		rgba(0, 0, 0, 0.24);
+}
+
+.score_display {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.move_election{
+	font-size: 30px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+body {
+	background: #76b852; /* fallback for old browsers */
+	background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+	background: -moz-linear-gradient(right, #76b852, #8DC26F);
+	background: -o-linear-gradient(right, #76b852, #8DC26F);
+	background: linear-gradient(to left, #76b852, #8DC26F);
+	font-family: "Dosis", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
