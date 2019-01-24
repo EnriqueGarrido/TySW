@@ -68,16 +68,25 @@ function onSignIn(googleUser) {
 
 function registerOrLogIn(idGoogle, name, email){
 	var request = new XMLHttpRequest();
-	request.open("POST", "loginGoogle.jsp");
+	request.open("POST", "servers/loginGoogle.jsp");
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	request.onreadystatechange=function(){
-		if(request.readyState == 4 && request.status == "200") {
-		/* TODO Logica del login y registro*/
+		if(request.readyState === 4){
+            var respuesta = JSON.parse(request.responseText);
+            if(respuesta.result ==="OK"){	
+            	localStorage.name = respuesta.nombre;
+            	localStorage.email = respuesta.email;
+            	location.href="GameSelection.html";
+            }
 		}
 	}
-	var p = "idGoogle=" + idGoogle + "&nombre=" + nombre + "&email=" + email;
-	//var p = {};
-	request.send(p);
+	//var p = "idGoogle=" + idGoogle + "&nombre=" + nombre + "&email=" + email;
+	var p = {
+			idGoogle: idGoogle,
+			name: name,
+			email: email 
+	};
+	request.send("p="+JSON.stringify(p));
 }
 
 /* DEBERIA IR DONDE SE VAYA A SUBIR LA FOTO*/

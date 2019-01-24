@@ -16,7 +16,7 @@ public class EMailSenderService {
 	private String smtpHost, startTTLS, port;
 	private String remitente, serverUser, userAutentication, pwd;
 	
-	public void enviarPorGmail(String destinatario, long codigo) throws MessagingException {
+	public void enviarPorGmail(String destinatario, String codigo) throws MessagingException {
 		this.smtpHost="smtp.gmail.com";
 		this.startTTLS="true";
 		this.port="465";
@@ -38,8 +38,8 @@ public class EMailSenderService {
         Session session = Session.getInstance(properties, auth);
 
         MimeMessage msg = new MimeMessage(session);
-        msg.setSubject("LaOca - recuperación de contraseña");
-        msg.setText("Pulsa en el siguiente enlace para crear una nueva contraseña: http://...../crearpwd.jsp?code=" + codigo);
+        msg.setSubject("The Cracks Games - recuperación de contraseña");
+        msg.setText("Pulsa en el siguiente enlace para crear una nueva contraseña: http://localhost:8080/TySWeb_Practica/ChangePassword.html?code=" + codigo);
         msg.setFrom(new InternetAddress(this.remitente));
         msg.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
         Transport.send(msg);

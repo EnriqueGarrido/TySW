@@ -152,6 +152,13 @@ body {
 	color: #EF3B3A;
 }
 
+#ok_text {
+	text-align: center;
+	font-size: 15px;
+	display: none;
+	color: #db5959;
+}
+
 body {
 	background: #76b852; /* fallback for old browsers */
 	background: -webkit-linear-gradient(right, #76b852, #8DC26F);

@@ -28,4 +28,9 @@ public class Manager {
 		usuario.insert(pwd);
 	}
 	
+	public Player loginGoogle(String idGoogle, String name, String email) throws Exception {
+		Player player = new Player();
+		return player.loginGoogle(idGoogle, name, email);
+	}
+	
 }
