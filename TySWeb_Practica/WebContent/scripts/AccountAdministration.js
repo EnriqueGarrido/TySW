@@ -59,3 +59,28 @@ function register(){
 	};
 	request.send("p="+JSON.stringify(p));
 }
+
+/*Called when Loging in with google*/
+function onSignIn(googleUser) {
+	var profile = googleUser.getBasicProfile();
+	registerOrLogIn(profile.getId(), profile.getName(), profile.getEmail());
+}
+
+function registerOrLogIn(idGoogle, name, email){
+	var request = new XMLHttpRequest();
+	request.open("POST", "loginGoogle.jsp");
+	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	request.onreadystatechange=function(){
+		if(request.readyState == 4 && request.status == "200") {
+		/* TODO Logica del login y registro*/
+		}
+	}
+	var p = "idGoogle=" + idGoogle + "&nombre=" + nombre + "&email=" + email;
+	//var p = {};
+	request.send(p);
+}
+
+/* DEBERIA IR DONDE SE VAYA A SUBIR LA FOTO*/
+function uploadPhoto(){
+	
+}
