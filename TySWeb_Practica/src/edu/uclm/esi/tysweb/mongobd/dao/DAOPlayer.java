@@ -55,6 +55,7 @@ public class DAOPlayer {
 			bUser.append("email", new BsonString(email));
 			bUser.put("idGoogle", new BsonString(idGoogle));
 			bUser.put("name", new BsonString(name));
+			users.insertOne(bUser);
 		}
 		
 			/* Player exists -> Login*/

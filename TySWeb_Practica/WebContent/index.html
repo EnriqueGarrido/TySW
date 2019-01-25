@@ -12,7 +12,6 @@
 <body>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="scripts/AccountAdministration.js"></script>
 	<div class="login-page">
 		<h1 align="center">THE CRACKS GAMES</h1>
 		<div class="form">
@@ -27,7 +26,7 @@
 					Already registered? <a href="#">Sign In</a>
 				</p>
 			</form>
-			<form class="login-form">
+			<div class="login-form">
 				<input id="email" type="text" placeholder="username" /> 
 				<input id="pass" type="password" placeholder="password" />
 				<p class="warning-message" id="login-warning-message"></p>
@@ -36,7 +35,7 @@
 				<p class="message">
 					Not registered? <a href="#">Create an account</a>
 				</p>
-			</form>
+			</div>
 			<p class="recover">
 				Forgot your Password? <a href="RecoverPassword.html">Recover it!</a>
 			</p>
@@ -50,7 +49,9 @@
 				opacity : "toggle"
 			}, "slow");
 		});
+		
 	</script>
 
+	<script src="scripts/AccountAdministration.js"></script>
 </body>
 </html>

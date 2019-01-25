@@ -8,9 +8,9 @@ function login(){
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.withCredentials= true;
     request.onreadystatechange = function (){
-        if(request.readyState === 4){
+        if(request.readyState == 4){
             var respuesta = JSON.parse(request.responseText);
-            if(respuesta.result ==="OK"){	
+            if(respuesta.result =="OK"){	
             	
             	localStorage.name = respuesta.nombre;
             	localStorage.email = respuesta.email;
@@ -71,9 +71,9 @@ function registerOrLogIn(idGoogle, name, email){
 	request.open("POST", "servers/loginGoogle.jsp");
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	request.onreadystatechange=function(){
-		if(request.readyState === 4){
+		if(request.readyState == 4){
             var respuesta = JSON.parse(request.responseText);
-            if(respuesta.result ==="OK"){	
+            if(respuesta.result =="OK"){	
             	localStorage.name = respuesta.nombre;
             	localStorage.email = respuesta.email;
             	location.href="GameSelection.html";
