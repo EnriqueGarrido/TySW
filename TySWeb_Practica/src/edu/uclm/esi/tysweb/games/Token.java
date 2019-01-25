@@ -12,9 +12,10 @@ public class Token {
 
 	public Token(String userName) {
 		this.playerEmail = userName;
-		this.expiredDate = System.currentTimeMillis() + 5*60*1000;
+		this.expiredDate = System.currentTimeMillis() + 120*60*1000;
 		this.value=UUID.randomUUID().toString();
 	}
+	public Token() {}
 	
 	public String getToken() {
 		return this.value;
@@ -30,5 +31,13 @@ public class Token {
 
 	public long getExpiredDate() {
 		return expiredDate;
+	}
+	
+	public void setValue(String value) {
+		this.value = value;
+	}
+	
+	public String getAssociatedEmail() throws Exception {
+		return DAOToken.getAssociatedEmail(this);
 	}
 }

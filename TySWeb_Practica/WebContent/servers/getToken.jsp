@@ -12,12 +12,13 @@
 	try{
 		String email = jso.optString("email");
 		Player.requestToken(email);
-		
+		respuesta.put("result", "OK");
+		respuesta.put("mensaje", "Email sent!");
 		
 	}catch(Exception e){
 		respuesta.put("result", "ERROR");
 		respuesta.put("mensaje", e.getMessage());
 	}
-
+	out.println(respuesta.toString());
 
 %>

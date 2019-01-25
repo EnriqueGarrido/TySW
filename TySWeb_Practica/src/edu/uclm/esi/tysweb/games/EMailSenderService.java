@@ -20,10 +20,10 @@ public class EMailSenderService {
 		this.smtpHost="smtp.gmail.com";
 		this.startTTLS="true";
 		this.port="465";
-		this.remitente="edu.uclm.esi.tysw@gmail.com";
-		this.serverUser="edu.uclm.esi.tysw@gmail.com";
+		this.remitente="thecrackgames1234@gmail.com";
+		this.serverUser="thecrackgames1234@gmail.com";
 		this.userAutentication="true";
-		this.pwd="tecnologiasysistemasweb123";
+		this.pwd="cristianito1234";
 		properties.put("mail.smtp.host", this.smtpHost);  
         properties.put("mail.smtp.starttls.enable", this.startTTLS);  
         properties.put("mail.smtp.port", this.port);  
@@ -38,8 +38,8 @@ public class EMailSenderService {
         Session session = Session.getInstance(properties, auth);
 
         MimeMessage msg = new MimeMessage(session);
-        msg.setSubject("The Cracks Games - recuperación de contraseña");
-        msg.setText("Pulsa en el siguiente enlace para crear una nueva contraseña: http://localhost:8080/TySWeb_Practica/ChangePassword.html?code=" + codigo);
+        msg.setSubject("The Cracks Games - Recuperación de contraseña");
+        msg.setText("Pulsa en el siguiente enlace para crear una nueva contraseña: http://localhost:8080/TySWeb_Practica/ChangePassword.html?token=" + codigo);
         msg.setFrom(new InternetAddress(this.remitente));
         msg.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
         Transport.send(msg);

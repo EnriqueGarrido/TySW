@@ -8,6 +8,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 
 import edu.uclm.esi.tysweb.games.Player;
+import edu.uclm.esi.tysweb.games.Token;
 import edu.uclm.esi.tysweb.mongodb.MongoBroker;
 
 public class DAOPlayer {
@@ -119,4 +120,42 @@ public class DAOPlayer {
 		}
 		return player;
 	}
+
+	/* CHANGE PASSWORD */
+	public static void changePassword(Player player, Token token, String pwd1, String pwd2) throws Exception {
+		if (!pwd1.equals(pwd2))
+			throw new Exception("Passwords are different.");
+		
+		MongoClient conection = MongoBroker.get().getBD();
+		BsonDocument criterion = new BsonDocument();
+		criterion.append("email", new BsonString(player.getEmail()));
+		criterion.append("token", new BsonString(token.getToken()));
+		MongoCollection<BsonDocument> tokens= conection.getDatabase(db).getCollection("Token", BsonDocument.class);
+		FindIterable<BsonDocument> result = tokens.find(criterion);
+		if (result.first()!=null) {
+			long token_expiredDate = Long.parseLong(result.first().getString("expiredDate").getValue());
+			long timestamp = System.currentTimeMillis();
+			if(token_expiredDate < timestamp) 
+				throw new Exception("This token has expired. Ask for another one.");
+		}else {
+			throw new Exception("Token not found.");
+		}
+		BsonDocument criterion2 = new BsonDocument();
+		criterion2.append("email", new BsonString(player.getEmail()));
+		MongoCollection<BsonDocument> users= conection.getDatabase(db).getCollection("Players", BsonDocument.class);
+		result = users.find(criterion2);
+		if (result.first()!=null) {
+			player.setPassword(pwd1);
+			player.setUserName(result.first().getString("name").getValue());
+			
+			BsonDocument updatablePlayer = new BsonDocument();
+			updatablePlayer.append("email", new BsonString(player.getEmail()));
+			updatablePlayer.append("name", new BsonString(player.getUserName()));
+			updatablePlayer.append("pwd", new BsonString(pwd1));
+			//users.updateOne(eq("email",player.getEmail()), updatablePlayer);
+			users.deleteOne(result.first());
+			users.insertOne(updatablePlayer);
+		}
+	}
+
 }

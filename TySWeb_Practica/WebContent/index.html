@@ -15,7 +15,7 @@
 	<div class="login-page">
 		<h1 align="center">THE CRACKS GAMES</h1>
 		<div class="form">
-			<form class="register-form">
+			<div class="register-form">
 				<input id="register_email" type="text" placeholder="Email Address" />
 				<input id="register_name" type="text" placeholder="Name" /> 
 				<input id="register_pwd" type="password" placeholder="Password" /> 	
@@ -25,7 +25,7 @@
 				<p class="message">
 					Already registered? <a href="#">Sign In</a>
 				</p>
-			</form>
+			</div>
 			<div class="login-form">
 				<input id="email" type="text" placeholder="username" /> 
 				<input id="pass" type="password" placeholder="password" />
@@ -35,16 +35,21 @@
 				<p class="message">
 					Not registered? <a href="#">Create an account</a>
 				</p>
+				<p class="recover">
+					Forgot your Password? <a href="RecoverPassword.html">Recover it!</a>
+				</p>
 			</div>
-			<p class="recover">
-				Forgot your Password? <a href="RecoverPassword.html">Recover it!</a>
-			</p>
+
 		</div>
 	</div>
 
 	<script>
 		$('.message a').click(function() {
-			$('form').animate({
+			$('.login-form').animate({
+				height : "toggle",
+				opacity : "toggle"
+			}, "slow");
+			$('.register-form').animate({
 				height : "toggle",
 				opacity : "toggle"
 			}, "slow");

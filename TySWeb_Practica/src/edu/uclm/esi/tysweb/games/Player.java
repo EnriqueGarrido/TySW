@@ -65,4 +65,11 @@ public class Player {
 		EMailSenderService emailservice = new EMailSenderService();
 		emailservice.enviarPorGmail(this.email, token.getToken());
 	}
+	
+	public void changePassword(Token token, String pwd1, String pwd2) throws Exception {
+		DAOPlayer.changePassword(this, token, pwd1, pwd2);
+		
+	}
+	
+
 }

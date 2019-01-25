@@ -18,7 +18,6 @@ public class Pool {
 	public Pool(int numeroDeConexiones) {
 		try {
 			String url = "localhost";
-			String db = "OCA";
 
 			this.libres = new ConcurrentLinkedQueue<>();
 			this.usadas = new ConcurrentLinkedQueue<>();

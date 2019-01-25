@@ -31,6 +31,20 @@
 		function logout(){
 			localStorage.clear();
 		}
+		
+		/*Se debe de llamar cuando se tenga la ruta de la imagen establecida*/
+		function changePhoto(){
+			var file = inputfoto.file[0];
+			var reader = new FileReader();
+			reader.onload=function(e){
+				var blob = new Blob([reader.result]);
+				var blobReader = new FileReader();
+				bloblReader.onload = event.target.result;
+				//wschat debe ser el websocket que se utiliza para el chat
+				wschat.send(buffer);
+			};
+			blobReader.readAsArrayBuffer(blob);
+		}
 	</script>
 	
 </body>
