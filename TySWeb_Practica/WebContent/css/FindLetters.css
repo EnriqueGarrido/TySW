@@ -8,21 +8,17 @@
 	color: #1a1a1a;
 }
 
-.rps_state {
-	background-color: yellow;
-	padding: 15px;
-}
-
-.rps_move {
+.FL_choose {
 	width: 75%;
 	display: inline-block;
-	background-color: red;
+	/*background-color: red;*/
 	/*margin-left: 10px;*/
 	margin: auto;
 	margin-top: 10px;
+	margin-left: 120px;
 }
 
-.rps_score {
+.FL_score {
 	margin: 20px;
 	width: 10%;
 	padding: 5px;
@@ -30,30 +26,21 @@
 	display: inline-block;
 }
 
-.rps_options {
-	margin: 28%;
-	/*margin-left: 350px;*/
-	/*margin-left: 25%;*/
-	margin-top: 20px;
-	width: 70%;
-	/*background-color: blue;*/
-}
-
-.rps_score p {
+.FL_score p {
 	font-family: "Dosis", sans-serif;
 	font-size: 20px;
 	font-weight: bold;
 	text-align: center;
 }
 
-.rps_move p {
+.FL_choose p {
 	font-family: "Dosis", sans-serif;
 	font-size: 30px;
 	font-weight: bold;
 	text-align: center;
 }
 
-.rps_score .score {
+.FL_score .score {
 	margin: auto;
 	width: 100px;
 	height: 100px;;
@@ -63,25 +50,20 @@
 		rgba(0, 0, 0, 0.24);
 }
 
-.rps_move .letter{
+.FL_choose .letter{
 	margin: auto;
-	width: 50px;
-	height: 50px;;
+	width: 85px;
+	height: 85px;;
 	/*background-color: red;*/
 	background-color: white;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0
 		rgba(0, 0, 0, 0.24);
+	float: left;
 }
 
 .score_display {
 	font-size: 40px;
 	font-weight: bold;
-}
-
-.move_election{
-	font-size: 30px;
-	text-align: center;
-	vertical-align: middle;
 }
 
 body {
