@@ -9,7 +9,7 @@
 	JSONObject respuesta=new JSONObject();
 	
 	try{
-		String idGoogle = jso.optString("isGoogle");
+		String idGoogle = jso.optString("idGoogle");
 		String name = jso.optString("name");
 		String email = jso.optString("email");
 		
