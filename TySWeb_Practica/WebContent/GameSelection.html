@@ -16,7 +16,7 @@
 			<div class="register-form">
 				<p>Select the picture from your file system to update your profile icon.</p>
 				<input type="file" id="new_photo">
-				<button onclick="changePhotoTEXT()">Change Photo</button>
+				<button onclick="changePhoto()">Change Photo</button>
 				<p class="change_photo">
 					<a href="#">Go back!</a>
 				</p>
@@ -84,16 +84,17 @@
 		
 		/*Se debe de llamar cuando se tenga la ruta de la imagen establecida*/
 		function changePhoto(){
-			var file = inputfoto.file[0];
+			var file = new_photo.files[0];
 			var reader = new FileReader();
 			reader.onload=function(e){
-				var blob = new Blob([reader.result]);
-				var blobReader = new FileReader();
-				blobReader.onload = event.target.result;
-				//wschat debe ser el websocket que se utiliza para el chat
-				ws.send(buffer);
+				//var blob = new Blob([reader.result]);
+				//var blobReader = new FileReader();
+				//blobReader.onload = event.target.result;
+				var img = e.target.result;
+				
+				ws.send();
 			};
-			blobReader.readAsArrayBuffer(blob);
+			reader.readAsArrayBuffer(file);
 		}
 		
 		/*************************************************************************/
