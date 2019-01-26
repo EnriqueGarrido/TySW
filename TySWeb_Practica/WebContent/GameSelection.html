@@ -16,7 +16,7 @@
 			<div class="register-form">
 				<p>Select the picture from your file system to update your profile icon.</p>
 				<input type="file" id="new_photo">
-				<button onclick="changePhoto()">Change Photo</button>
+				<button onclick="changePhotoTEXT()">Change Photo</button>
 				<p class="change_photo">
 					<a href="#">Go back!</a>
 				</p>
@@ -26,7 +26,7 @@
 				<p id="user-name"></p>
 				<button class="game-selection">Play PPT</button>
 				<button class="game-selection">Play FIND PAIR OF LETTERS</button>
-				<button class="game-selection">CHAT</button>
+				<button class="game-selection" onclick="SendChat()">CHAT</button>
 				<p class="change_photo">
 					<a href="#">Edit photo</a>
 				</p>
@@ -41,6 +41,7 @@
 		window.onload = function(){
 			var user_name_text = document.getElementById("user-name");
 			user_name_text.innerHTML = localStorage.name;
+			createWebSocket();
 		}
 		
 		$('.change_photo a').click(function() {
@@ -67,6 +68,20 @@
 			});
 		}
 		
+		var ws = {};
+		function createWebSocket(){
+			var url = "ws://" + window.location.hostname + ":" + window.location.port + "/TySWeb_Practica/ws_server";
+			ws = new WebSocket(url);
+			
+			ws.onopen = function(){}
+			
+			ws.onerror = function(){}
+			
+			ws.onclose = function(){}
+			
+			ws.onmessage = function(){}
+		}
+		
 		/*Se debe de llamar cuando se tenga la ruta de la imagen establecida*/
 		function changePhoto(){
 			var file = inputfoto.file[0];
@@ -76,9 +91,23 @@
 				var blobReader = new FileReader();
 				blobReader.onload = event.target.result;
 				//wschat debe ser el websocket que se utiliza para el chat
-				wschat.send(buffer);
+				ws.send(buffer);
 			};
 			blobReader.readAsArrayBuffer(blob);
+		}
+		
+		/*************************************************************************/
+		function changePhotoTEXT(){
+			var mensaje = {
+					TYPE : "photo",
+			}
+			ws.send(JSON.stringify(mensaje));
+		}
+		function SendChat(){
+			var mensaje = {
+					TYPE : "chat",
+			}
+			ws.send(JSON.stringify(mensaje));
 		}
 	</script>
 	

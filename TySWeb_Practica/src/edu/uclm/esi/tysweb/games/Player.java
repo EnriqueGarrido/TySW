@@ -13,7 +13,17 @@ public class Player {
 	
 	private String idGoogle;
 	
+	private String photo;
 	
+	
+	public String getPhotoStr() {
+		return photo;
+	}
+	
+	public void setPhotoSrt(String photo) {
+		this.photo = photo;
+	}
+
 	public String getIdGoogle() {
 		return idGoogle;
 	}
@@ -69,6 +79,10 @@ public class Player {
 	public void changePassword(Token token, String pwd1, String pwd2) throws Exception {
 		DAOPlayer.changePassword(this, token, pwd1, pwd2);
 		
+	}
+
+	public void setPhotoBinary(byte[] bytes) throws Exception {
+		DAOPlayer.setPhotoBinary(this, bytes);
 	}
 	
 

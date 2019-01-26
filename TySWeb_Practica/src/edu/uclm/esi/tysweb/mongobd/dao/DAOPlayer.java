@@ -2,6 +2,7 @@ package edu.uclm.esi.tysweb.mongobd.dao;
 
 import org.bson.BsonDocument;
 import org.bson.BsonString;
+import org.bson.internal.Base64;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
@@ -31,6 +32,14 @@ public class DAOPlayer {
 			user=new Player();
 			user.setEmail(result.first().getString("email").getValue());
 			user.setUserName(result.first().getString("name").getValue());
+			/*Load photo*/
+			BsonDocument criterionPhoto=new BsonDocument();
+			criterionPhoto.append("email", new BsonString(email));
+			MongoCollection<BsonDocument> photos= conection.getDatabase(db).getCollection("Photos", BsonDocument.class);
+			FindIterable<BsonDocument> resultPhoto = photos.find(criterionPhoto);
+			if (resultPhoto.first()!=null) {
+				user.setPhotoSrt(resultPhoto.first().getString("photo").getValue());
+			}
 			//usuario.setPhoto(resultado.first().getString("photo").getValue());
 		} else {
 			throw new Exception("Error loging in");
@@ -118,6 +127,7 @@ public class DAOPlayer {
 		} else {
 			throw new Exception("User not found.");
 		}
+		MongoBroker.get().close(conection);
 		return player;
 	}
 
@@ -156,6 +166,23 @@ public class DAOPlayer {
 			users.deleteOne(result.first());
 			users.insertOne(updatablePlayer);
 		}
+		MongoBroker.get().close(conection);
+	}
+
+	public static void setPhotoBinary(Player player, byte[] bytes) throws Exception {
+		String img_64 = Base64.encode(bytes);
+		MongoClient conection = MongoBroker.get().getBD();
+		BsonDocument criterion = new BsonDocument();
+		criterion.append("email", new BsonString(player.getEmail()));
+		MongoCollection<BsonDocument> photos= conection.getDatabase(db).getCollection("Photos", BsonDocument.class);
+		FindIterable<BsonDocument> result = photos.find(criterion);
+		if (result.first()!=null) {
+			photos.deleteOne(criterion);
+		}
+		BsonDocument new_photo = new BsonDocument();
+		new_photo.append("email", new BsonString(player.getEmail()));
+		new_photo.append("photo", new BsonString(img_64));
+		photos.insertOne(new_photo);
 	}
 
 }
