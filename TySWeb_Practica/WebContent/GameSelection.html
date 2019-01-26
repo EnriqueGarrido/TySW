@@ -4,18 +4,32 @@
 <meta charset="utf-8">
 <title>Game Selection - TCG</title>
 <link rel="stylesheet" href="css/login.css">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="93277449347-ftj6clu27o1v12ngn3iallve8d7cfi34.apps.googleusercontent.com">
 </head>
 <body>
-	<script src="scripts/CreateGameMatch.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<div class="login-page">
 		<h1 align="center">THE CRACKS GAMES</h1>
 		<div class="form">
-			<form>
-				<img id="img-user" src="img/user.png">
+			<div class="register-form">
+				<p>Select the picture from your file system to update your profile icon.</p>
+				<input type="file" id="new_photo">
+				<button onclick="changePhoto()">Change Photo</button>
+				<p class="change_photo">
+					<a href="#">Go back!</a>
+				</p>
+			</div>
+			<div class="login-form">
+				<img class="this_img" id="img-user" src="img/user.png">
 				<p id="user-name"></p>
 				<button class="game-selection">Play PPT</button>
 				<button class="game-selection">Play FIND PAIR OF LETTERS</button>
-			</form>
+				<p class="change_photo">
+					<a href="#">Edit photo</a>
+				</p>
+			</div>
 			<p class="message">
 				<a href="index.html" onclick="logout()">Log out</a>
 			</p>
@@ -28,8 +42,28 @@
 			user_name_text.innerHTML = localStorage.name;
 		}
 		
+		$('.change_photo a').click(function() {
+			$('.login-form').animate({
+				height : "toggle",
+				opacity : "toggle"
+			}, "slow");
+			$('.register-form').animate({
+				height : "toggle",
+				opacity : "toggle"
+			}, "slow");
+		});
+		
+		
 		function logout(){
 			localStorage.clear();
+			signOut();
+		}
+		
+		function signOut() {
+			var auth2 = gapi.auth2.getAuthInstance();
+			auth2.signOut().then(function () {
+				console.log('User signed out.');
+			});
 		}
 		
 		/*Se debe de llamar cuando se tenga la ruta de la imagen establecida*/
@@ -39,7 +73,7 @@
 			reader.onload=function(e){
 				var blob = new Blob([reader.result]);
 				var blobReader = new FileReader();
-				bloblReader.onload = event.target.result;
+				blobReader.onload = event.target.result;
 				//wschat debe ser el websocket que se utiliza para el chat
 				wschat.send(buffer);
 			};

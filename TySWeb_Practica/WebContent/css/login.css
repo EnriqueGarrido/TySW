@@ -97,6 +97,11 @@ body {
 	text-decoration: none;
 }
 
+.change_photo a{
+	color: #4CAF50;
+	text-decoration: none;
+}
+
 .form .recover {
 	margin: 15px 0 0;
 	color: #b3b3b3;
