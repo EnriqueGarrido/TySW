@@ -5,6 +5,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="css/Chat.css">
+	<script src="scripts/ChatManager.js"></script>
 </head>
 
 <body>
@@ -12,9 +13,11 @@
 		<h1 align="center">CHAT</h1>
   		<div class="form">
   			<div id="menu">
-        		<p class="welcome">Welcome, User <b></b></p>
+        		<p class="welcome" id="welcome-msg">Welcome, <b></b></p>
     		</div>
-    		<div id="chatbox"></div>
+    		<div id="chatbox">
+    			<p id="all-conver"></p>
+    		</div>
         	<input name="usermsg" type="text" id="usermsg"/>
         	<button onclick="Send()">Send</button>
         	<p class="message">

@@ -1,6 +1,6 @@
-<%@page import="edu.uclm.esi.tysweb.games.*"%>
-<%@page import="edu.uclm.esi.tysweb.web.*"%>
-<%@page import="org.json.*"%>
+<%@page import="edu.uclm.esi.tysweb.games.Player"%>
+<%@page import="edu.uclm.esi.tysweb.web.Manager"%>
+<%@page import="org.json.JSONObject"%>
 <%@ page language="java" contentType="application/json; charset=UTF-8"%>
 
 <%
@@ -20,9 +20,10 @@
 		Player player = Manager.get().login(email, pwd);
 		session.setAttribute("player", player);
 		
-		//Cookie cookiePWD=new Cookie("pwd", pwd);
-		//cookiePWD.setMaxAge(3000000);
-		//response.addCookie(cookiePWD);
+		Cookie cookieUserName=new Cookie("playerName", player.getUserName());
+		//cookieUserName.setMaxAge(3000000);
+		cookieUserName.setPath("/");
+		response.addCookie(cookieUserName);
 		
 		if(player == null)
 			throw new Exception();

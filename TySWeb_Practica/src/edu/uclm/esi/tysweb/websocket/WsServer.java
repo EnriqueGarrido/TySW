@@ -1,8 +1,10 @@
 package edu.uclm.esi.tysweb.websocket;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,6 +27,7 @@ public class WsServer {
 
 	//static Set<HttpSession> players = Collections.synchronizedSet(new HashSet<HttpSession>());
 	static Map<String, Player> players = new HashMap<String, Player>();
+	static Map<String, Session> conections = new HashMap<String, Session>();
 	
 	private byte[] img_buffer = null;
 	
@@ -35,6 +38,7 @@ public class WsServer {
 		Player player = (Player) httpSession.getAttribute("player");
 		System.out.println("OPEN WS");
 		players.put(session.getId(), player);
+		conections.put(session.getId(), session);
 	}
 	
 	@OnMessage
@@ -42,24 +46,38 @@ public class WsServer {
 		try {
 			JSONObject jso = new JSONObject(message);
 			if(jso.get("TYPE").equals("chat")) {
-				System.out.println("CHAT!!!");
+				System.out.println("[" + jso.get("userName") + "] : " + jso.get("message") + "\n");
+				/**** TEST ***/
+				JSONObject jsoSent = new JSONObject();
+				jsoSent.put("TYPE", "chatIncome");
+				jsoSent.put("userName", jso.get("userName"));
+				jsoSent.put("message", jso.get("message"));
+				
+				Collection<Session> sessions_collection = conections.values();
+				Iterator<Session> it = sessions_collection.iterator();
+				while(it.hasNext()) {
+					Session s = it.next();
+					s.getBasicRemote().sendText(jsoSent.toString());
+				}
+				/**************/
 			}
 		}catch (Exception e) {
-			
+			players.remove(session.getId());
+			conections.remove(session.getId());
 		}
 	}
 	
 	@OnMessage
 	public void onBinaryMessage(byte[] message, boolean last, Session session) {
 		try {
-			System.out.println("BINARY FOTO!!!");
+			//System.out.println("BINARY FOTO!!!");
 			Player player = players.get(session.getId());
-			System.out.println(player.getEmail());
+			//System.out.println(player.getEmail());
 			player.setPhotoBinary(message);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			img_buffer = null;
+			//img_buffer = null;
 		}
 		/*byte[] aux_buffer = new byte[0];
 		if(img_buffer != null) {
@@ -90,7 +108,9 @@ public class WsServer {
 	
 	@OnClose
 	public void onClose(Session session) {
-		players.remove(session);
+		System.out.println("CLOSE WS");
+		players.remove(session.getId());
+		conections.remove(session.getId());
 	}
 	
 	/*@Override

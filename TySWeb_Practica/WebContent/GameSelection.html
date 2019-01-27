@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="css/login.css">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="93277449347-ftj6clu27o1v12ngn3iallve8d7cfi34.apps.googleusercontent.com">
-<script src="scripts/Base64.js"></script>
+<script src="scripts/CookiesReader.js"></script>
 </head>
 <body>
 	<script
@@ -27,7 +27,7 @@
 				<p id="user-name"></p>
 				<button class="game-selection">Play PPT</button>
 				<button class="game-selection">Play FIND PAIR OF LETTERS</button>
-				<button class="game-selection" onclick="SendChat()">CHAT</button>
+				<button class="game-selection" onclick="LoadChat()">CHAT</button>
 				<p class="change_photo">
 					<a href="#">Edit photo</a>
 				</p>
@@ -38,13 +38,18 @@
 		</div>
 	</div>
 	
+
 	<script>
 		window.onload = function(){
 			var user_name_text = document.getElementById("user-name");
-			user_name_text.innerHTML = localStorage.name;
-			if (localStorage.photo != "undefined"){
+			//user_name_text.innerHTML = localStorage.name;
+				//alert("Cookie: "+ getCookie("playerName"));
+				user_name_text.innerHTML = sessionStorage.name;
+			//if (localStorage.photo != "undefined"){
+			if (sessionStorage.photo != "undefined"){
 				var img_user = document.getElementById("img-user");
-				img_user.src = "data:image/jpeg;base64,"+localStorage.photo;
+				//img_user.src = "data:image/jpeg;base64,"+localStorage.photo;
+				img_user.src = "data:image/jpeg;base64,"+sessionStorage.photo;
 			}
 			createWebSocket();
 		}
@@ -62,7 +67,9 @@
 		
 		
 		function logout(){
-			localStorage.clear();
+			ws.close();
+			//localStorage.clear();
+			sessionStorage.clear();
 			signOut();
 		}
 		
@@ -87,6 +94,10 @@
 			ws.onmessage = function(){}
 		}
 		
+		window.onbeforeunload = function(){
+			ws.close();
+		}
+		
 		/*Se debe de llamar cuando se tenga la ruta de la imagen establecida*/
 		function changePhoto(){
 			var file = new_photo.files[0];
@@ -103,19 +114,10 @@
 			reader.readAsArrayBuffer(file);
 		}
 		
-		/*************************************************************************/
-		function changePhotoTEXT(){
-			var mensaje = {
-					TYPE : "photo",
-			}
-			ws.send(JSON.stringify(mensaje));
+		function LoadChat(){
+			location.href="Chat.html";
 		}
-		function SendChat(){
-			var mensaje = {
-					TYPE : "chat",
-			}
-			ws.send(JSON.stringify(mensaje));
-		}
+		
 	</script>
 	
 </body>

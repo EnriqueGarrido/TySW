@@ -12,9 +12,13 @@ function login(){
             var respuesta = JSON.parse(request.responseText);
             if(respuesta.result =="OK"){	
             	
-            	localStorage.name = respuesta.nombre;
-            	localStorage.email = respuesta.email;
-            	localStorage.photo = respuesta.photo;
+            	//localStorage.name = respuesta.nombre;
+            	//localStorage.email = respuesta.email;
+            	//localStorage.photo = respuesta.photo;
+            	
+            	sessionStorage.name = respuesta.nombre;
+            	sessionStorage.email = respuesta.email;
+            	sessionStorage.photo = respuesta.photo;
             	
             	location.href="GameSelection.html";
             }else{
@@ -75,8 +79,8 @@ function registerOrLogIn(idGoogle, name, email){
 		if(request.readyState == 4){
             var respuesta = JSON.parse(request.responseText);
             if(respuesta.result =="OK"){	
-            	localStorage.name = respuesta.nombre;
-            	localStorage.email = respuesta.email;
+            	sessionStorage.name = respuesta.nombre;
+            	sessionStorage.email = respuesta.email;
             	location.href="GameSelection.html";
             }
 		}
