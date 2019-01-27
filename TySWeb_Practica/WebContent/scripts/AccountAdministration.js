@@ -14,6 +14,7 @@ function login(){
             	
             	localStorage.name = respuesta.nombre;
             	localStorage.email = respuesta.email;
+            	localStorage.photo = respuesta.photo;
             	
             	location.href="GameSelection.html";
             }else{

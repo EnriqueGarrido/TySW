@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="css/login.css">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="93277449347-ftj6clu27o1v12ngn3iallve8d7cfi34.apps.googleusercontent.com">
+<script src="scripts/Base64.js"></script>
 </head>
 <body>
 	<script
@@ -41,6 +42,10 @@
 		window.onload = function(){
 			var user_name_text = document.getElementById("user-name");
 			user_name_text.innerHTML = localStorage.name;
+			if (localStorage.photo != "undefined"){
+				var img_user = document.getElementById("img-user");
+				img_user.src = "data:image/jpeg;base64,"+localStorage.photo;
+			}
 			createWebSocket();
 		}
 		
@@ -87,12 +92,13 @@
 			var file = new_photo.files[0];
 			var reader = new FileReader();
 			reader.onload=function(e){
-				//var blob = new Blob([reader.result]);
-				//var blobReader = new FileReader();
-				//blobReader.onload = event.target.result;
-				var img = e.target.result;
-				
-				ws.send();
+				var blob = new Blob([reader.result]);
+				var blobReader = new FileReader();
+				blobReader.onload = function(event){
+						var buffer = event.target.result;
+						ws.send(buffer);
+				}
+				blobReader.readAsArrayBuffer(blob);
 			};
 			reader.readAsArrayBuffer(file);
 		}

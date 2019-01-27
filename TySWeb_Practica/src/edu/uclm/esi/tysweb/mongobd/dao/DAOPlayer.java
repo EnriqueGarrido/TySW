@@ -183,6 +183,7 @@ public class DAOPlayer {
 		new_photo.append("email", new BsonString(player.getEmail()));
 		new_photo.append("photo", new BsonString(img_64));
 		photos.insertOne(new_photo);
+		MongoBroker.get().close(conection);
 	}
 
 }
