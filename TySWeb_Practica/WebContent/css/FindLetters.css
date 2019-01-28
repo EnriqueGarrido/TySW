@@ -35,7 +35,7 @@
 
 .FL_choose p {
 	font-family: "Dosis", sans-serif;
-	font-size: 30px;
+	font-size: 17px;
 	font-weight: bold;
 	text-align: center;
 }
@@ -49,11 +49,25 @@
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0
 		rgba(0, 0, 0, 0.24);
 }
-
+.FL_score button{
+	font-family: "Dosis", sans-serif;
+	text-transform: uppercase;
+	outline: 0;
+	background: #4CAF50;
+	width: 100%;
+	border: 0;
+	padding: 15px;
+	color: #FFFFFF;
+	font-size: 14px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
 .FL_choose .letter{
 	margin: auto;
-	width: 85px;
-	height: 85px;;
+	margin-right: 10px;
+	width: 50px;
+	height: 50px;;
 	/*background-color: red;*/
 	background-color: white;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0

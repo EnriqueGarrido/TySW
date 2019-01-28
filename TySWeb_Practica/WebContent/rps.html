@@ -13,6 +13,7 @@
 		<div class="rps_board">
 			<div class="rps_state">
 				<div class="rps_score">
+					<button onclick="LeaveGame()">Leave Game</button>
 					<p>Score</p>
 					<div class="score">
 						<p id="name_opponent">ANA</p>
@@ -25,11 +26,11 @@
 				</div>
 				<div class="rps_move">
 					<div class="player_move">
-						<p class="move_election">Hola</p>
+						<p class="move_election">Waiting movement</p>
 					</div>
 					<p class="versus">VS</p>
 					<div class="player_move">
-						<p class="move_election">Holaaaaa</p>
+						<p class="move_election">Waiting movement</p>
 					</div>
 					<div class="rps_options">
 						<img id="Paper" src="img/Paper.png"> 
@@ -46,14 +47,15 @@
 	
 	window.onload = function(){
 		createWebsocket();
-		beginMatch();
 	}
 	
 	function createWebsocket(){
 		var url = "ws://" + window.location.hostname + ":" + window.location.port + "/TySWeb_Practica/ws_games";
 		gamews = new WebSocket(url);
 		
-		gamews.onopen = function(){}
+		gamews.onopen = function(){
+			beginMatch();
+		}
 		
 		gamews.onerror = function(){}
 		
@@ -61,9 +63,9 @@
 		
 		gamews.onmessage = function(m){
 			var data = m.data;
-			data = JSONParse(data);
+			data = JSON.parse(data);
 			if(data.TYPE == "MATCH"){
-				if(data.currentPlayer != -1){
+				if(data.players != null){
 					alert("PARTIDA COMENZADA")
 				}
 			}
@@ -77,6 +79,12 @@
 	function beginMatch(){
 		var begin = {TYPE: "BEGIN_MATCH"}
 		gamews.send(JSON.stringify(begin));
+	}
+	
+	function LeaveGame(){
+		gamews.close();
+		location.href="GameSelection.html";
+		
 	}
 	
 	

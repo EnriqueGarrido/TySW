@@ -50,6 +50,10 @@ body {
 	box-sizing: border-box;
 	font-size: 14px;
 }
+input[type=file]{
+	background: #cceacf;
+	backgroung-color:green;
+}
 
 .form button {
 	font-family: "Dosis", sans-serif;

@@ -45,7 +45,6 @@ public class WsServerGames {
 		try {
 			JSONObject jso = new JSONObject(message);
 			if(jso.get("TYPE").equals("BEGIN_MATCH")) {
-				// Move to a function
 				Player player = players.get(session.getId());
 				Match match = GamesManager.get().joinGame(player, "Rock, Paper, Scissors.");
 				send(match.getPlayers(), match);
