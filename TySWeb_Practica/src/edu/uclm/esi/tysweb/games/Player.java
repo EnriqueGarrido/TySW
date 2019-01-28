@@ -15,6 +15,8 @@ public class Player {
 	
 	private String photo;
 	
+	private Match currentMatch;
+	
 	
 	public String getPhotoStr() {
 		return photo;
@@ -83,6 +85,10 @@ public class Player {
 
 	public void setPhotoBinary(byte[] bytes) throws Exception {
 		DAOPlayer.setPhotoBinary(this, bytes);
+	}
+
+	public void setCurrentMatch(Match match) {
+		this.currentMatch = match;
 	}
 	
 

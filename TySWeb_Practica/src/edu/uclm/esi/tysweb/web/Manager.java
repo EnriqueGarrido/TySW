@@ -33,4 +33,6 @@ public class Manager {
 		return player.loginGoogle(idGoogle, name, email);
 	}
 	
+	
+	
 }
