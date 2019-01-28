@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="css/login.css">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="93277449347-ftj6clu27o1v12ngn3iallve8d7cfi34.apps.googleusercontent.com">
-<script src="scripts/CookiesReader.js"></script>
 </head>
 <body>
 	<script
@@ -25,8 +24,8 @@
 			<div class="login-form">
 				<img class="this_img" id="img-user" src="img/user.png">
 				<p id="user-name"></p>
-				<button class="game-selection">Play PPT</button>
-				<button class="game-selection">Play FIND PAIR OF LETTERS</button>
+				<button class="game-selection" onclick="PlayRPS()">Play RPS</button>
+				<button class="game-selection" onclick="FindLetters()">Play FIND PAIR OF LETTERS</button>
 				<button class="game-selection" onclick="LoadChat()">CHAT</button>
 				<p class="change_photo">
 					<a href="#">Edit photo</a>
@@ -116,6 +115,13 @@
 		
 		function LoadChat(){
 			location.href="Chat.html";
+		}
+		
+		function PlayRPS(){
+			location.href="rps.html"
+		}
+		function FindLetters(){
+			location.href="FindLetters.html"
 		}
 		
 	</script>
