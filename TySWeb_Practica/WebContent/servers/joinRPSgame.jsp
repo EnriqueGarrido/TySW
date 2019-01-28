@@ -1,4 +1,6 @@
 <%@page import="edu.uclm.esi.tysweb.games.Player"%>
+<%@page import="edu.uclm.esi.tysweb.games.Match"%>
+
 <%@page import="edu.uclm.esi.tysweb.games.GamesManager"%>
 
 <%@page import="org.json.JSONObject"%>
@@ -11,7 +13,8 @@
 	
 	try{
 		Player player = (Player) session.getAttribute("player");
-		GamesManager.get().joinGame(player, "Rock, Paper, Scissors.");
+		Match match = GamesManager.get().joinGame(player, "Rock, Paper, Scissors.");
+		
 		
 		
 	}catch(Exception e){

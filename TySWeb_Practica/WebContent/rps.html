@@ -37,15 +37,51 @@
 						<img id="Scissors" src="img/Scissors.png">
 					</div>
 				</div>
-
 			</div>
-
-
 		</div>
-
-
-
 	</div>
+	
+	<script>
+	var gamews = {};
+	
+	window.onload = function(){
+		createWebsocket();
+		beginMatch();
+	}
+	
+	function createWebsocket(){
+		var url = "ws://" + window.location.hostname + ":" + window.location.port + "/TySWeb_Practica/ws_games";
+		gamews = new WebSocket(url);
+		
+		gamews.onopen = function(){}
+		
+		gamews.onerror = function(){}
+		
+		gamews.onclose = function(){}
+		
+		gamews.onmessage = function(m){
+			var data = m.data;
+			data = JSONParse(data);
+			if(data.TYPE == "MATCH"){
+				if(data.currentPlayer != -1){
+					alert("PARTIDA COMENZADA")
+				}
+			}
+		}
+	}
+	
+	window.onbeforeunload = function(){
+		gamews.close();
+	}
+	
+	function beginMatch(){
+		var begin = {TYPE: "BEGIN_MATCH"}
+		gamews.send(JSON.stringify(begin));
+	}
+	
+	
+	
+	</script>
 
 </body>
 </html>
