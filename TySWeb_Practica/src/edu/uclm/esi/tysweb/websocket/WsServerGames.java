@@ -47,9 +47,15 @@ public class WsServerGames {
 			if(jso.get("TYPE").equals("BEGIN_MATCH")) {
 				Player player = players.get(session.getId());
 				Match match = GamesManager.get().joinGame(player, "Rock, Paper, Scissors.");
-				send(match.getPlayers(), match);
+				if (match.getPlayers().size()==2) {
+					send(match.getPlayers(), match);
+				}else {
+					String s= "Waiting opponent...";	
+					send(s, player, session);
+				}
+				
 			}else if (jso.get("TYPE").equals("MOVEMENT")) {
-
+				
 			}
 		} catch (Exception e) {
 			players.remove(session.getId());
@@ -89,6 +95,17 @@ public class WsServerGames {
 				s_id = phase.getKey();
 		}
 		return s_id;
+	}
+	public static void send(String s, Player p, Session session) {
+		JSONObject jso = new JSONObject();
+		try {
+			jso.put("text", s);
+			jso.put("player", p);
+			jso.put("TYPE", "INFORMATIVE");
+			session.getBasicRemote().sendText(jso.toString());
+		}catch(Exception e) {
+			
+		}
 	}
 
 }

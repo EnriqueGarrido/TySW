@@ -12,15 +12,16 @@
 		</div>
 		<div class="rps_board">
 			<div class="rps_state">
+				<p id="Information"></p>
 				<div class="rps_score">
 					<button onclick="LeaveGame()">Leave Game</button>
-					<p>Score</p>
+					<p id=Information></p>
 					<div class="score">
-						<p id="name_opponent">ANA</p>
+						<p id="name_opponent"></p>
 						<p id="score_opponent" class="score_display">0</p>
 					</div>
 					<div class="score">
-						<p id="name_player">PEPE</p>
+						<p id="name_player"></p>
 						<p id="score_player" class="score_display">0</p>
 					</div>
 				</div>
@@ -64,10 +65,25 @@
 		gamews.onmessage = function(m){
 			var data = m.data;
 			data = JSON.parse(data);
+			var information = document.getElementById("Information");
+			var name_opponent = document.getElementById("name_opponent");
+			var name_player = document.getElementById("name_player");
+			
 			if(data.TYPE == "MATCH"){
 				if(data.players != null){
-					alert("PARTIDA COMENZADA")
+					information.innerHTML= "PARTIDA COMENZADA";
+					name_player.innerHTML=sessionStorage.name;
+					
+					for (var i in data.players){
+						if ((sessionStorage.name)!=(data.players[i].userName)){
+							name_opponent.innerHTML= data.players[i].userName;
+						}
+					}	
 				}
+			}else if(data.TYPE == "INFORMATIVE"){
+					information.innerHTML= data.text;
+					name_player.innerHTML=sessionStorage.name;
+					name_opponent.innerHTML= "...";
 			}
 		}
 	}
@@ -83,9 +99,11 @@
 	
 	function LeaveGame(){
 		gamews.close();
-		location.href="GameSelection.html";
-		
+		location.href="GameSelection.html";	
 	}
+	
+	
+	
 	
 	
 	

@@ -27,7 +27,6 @@
 
 .rps_state {
 	/*background-color: yellow;*/
-	padding: 15px;
 }
 
 .rps_move {
@@ -36,7 +35,7 @@
 	/*background-color: red;*/
 	/*margin-left: 10px;*/
 	margin: auto;
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 }
 
 .versus {
@@ -57,7 +56,6 @@
 .rps_score {
 	margin: 20px;
 	width: 10%;
-	padding: 5px;
 	/*background-color: white;*/
 	display: inline-block;
 }
@@ -99,6 +97,12 @@
 	cursor: pointer;
 }
 
+.rps_state p{
+	font-family: "Dosis", sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
 .rps_score .score {
 	margin: auto;
 	width: 100px;
