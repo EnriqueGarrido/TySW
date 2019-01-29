@@ -15,7 +15,9 @@ public class Player {
 	
 	private String idGoogle;
 	
+	@JsonIgnore
 	private String photo;
+	
 	@JsonIgnore
 	private Match currentMatch;
 	
@@ -95,6 +97,10 @@ public class Player {
 	
 	public Match getCurrentMatch() {
 		return currentMatch;
+	}
+	
+	public boolean tieneTurno() {
+		return currentMatch.tieneElTurno(this);
 	}
 
 }

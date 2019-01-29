@@ -57,8 +57,13 @@ public class WsServerGames {
 			}else if (jso.get("TYPE").equals("MOVEMENT")) {
 				Player player = players.get(session.getId());
 				int [] coordinates = {Integer.parseInt(jso.getString("MOVE").toString())}; 
-				Match match = player.getCurrentMatch().move(player, coordinates);
-				send(match.getPlayers(), match);
+				try {
+					Match match = player.getCurrentMatch().move(player, coordinates);
+					send(match.getPlayers(), match);
+				}catch(Exception e) {
+					System.out.println(player.getUserName()+" "+e.getMessage());
+				}
+				
 			}
 		} catch (Exception e) {
 			players.remove(session.getId());

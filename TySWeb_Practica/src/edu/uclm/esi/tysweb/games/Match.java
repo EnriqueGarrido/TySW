@@ -48,7 +48,11 @@ public abstract class Match {
 		if (this.board.end())
 			throw new Exception("The match is finished");
 		this.board.move(player, coordinates);
-		this.currentPlayer=(this.currentPlayer+1)%this.players.size();//Revisar
+		
+		if(currentPlayer == -1) // In case its the first movement, assign the actual currentPlayer
+			currentPlayer = players.indexOf(player); 
+		this.currentPlayer=(this.currentPlayer+1)%this.players.size(); // Increase the currentPlayer
+		
 		this.winner=this.board.getWinner();
 		if(this.board.end())
 			save();

@@ -15,7 +15,9 @@ public class RPSMatch extends Match{
 
 	}
 	public boolean tieneElTurno(Player player) {
-		return true;
+		if(currentPlayer == players.indexOf(player) || currentPlayer == -1)
+			return true;
+		return false;
 	}
 	@Override
 	protected void save() throws Exception{
