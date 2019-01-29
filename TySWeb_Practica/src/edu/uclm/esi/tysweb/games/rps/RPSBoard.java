@@ -55,10 +55,11 @@ public class RPSBoard extends Board{
 		for(int i=0; i<a.length;i++) {
 			if(gana(a[i],b[i]))
 				victoriasA++;
-			else
+			else if(gana(b[i], a[i]))
 				victoriasB++;
 		}
-		return victoriasA>victoriasB ? this.match.getPlayers().get(0) : this.match.getPlayers().get(1);
+		return victoriasA>victoriasB ? this.match.getPlayers().get(0) : 
+			victoriasB>victoriasA ? this.match.getPlayers().get(1) : null;
 	}
 	private boolean gana(int a, int b) {//INCOMPLETO VER TODOS LOS CASOS
 		if (a==PIEDRA && b == TIJERA) {
