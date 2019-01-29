@@ -34,9 +34,9 @@
 						<p class="move_election">Waiting movement</p>
 					</div>
 					<div class="rps_options">
-						<img id="Paper" src="img/Paper.png"> 
-						<img id="Rock" src="img/rock.png"> 
-						<img id="Scissors" src="img/Scissors.png">
+						<img onclick= "SendPaper()" id="Paper" src="img/Paper.png"> 
+						<img onclick= "SendRock()" id="Rock" src="img/rock.png"> 
+						<img onclick= "SendScissors()" id="Scissors" src="img/Scissors.png">
 					</div>
 				</div>
 			</div>
@@ -45,9 +45,13 @@
 	
 	<script>
 	var gamews = {};
+	var information = document.getElementById("Information");
+	var name_opponent = document.getElementById("name_opponent");
+	var name_player = document.getElementById("name_player");
 	
 	window.onload = function(){
 		createWebsocket();
+		
 	}
 	
 	function createWebsocket(){
@@ -65,12 +69,9 @@
 		gamews.onmessage = function(m){
 			var data = m.data;
 			data = JSON.parse(data);
-			var information = document.getElementById("Information");
-			var name_opponent = document.getElementById("name_opponent");
-			var name_player = document.getElementById("name_player");
 			
 			if(data.TYPE == "MATCH"){
-				if(data.players != null){
+				if(data.currentPlayer == -1){
 					information.innerHTML= "PARTIDA COMENZADA";
 					name_player.innerHTML=sessionStorage.name;
 					
@@ -79,6 +80,8 @@
 							name_opponent.innerHTML= data.players[i].userName;
 						}
 					}	
+				}else{
+					alert("JAJ")
 				}
 			}else if(data.TYPE == "INFORMATIVE"){
 					information.innerHTML= data.text;
@@ -101,7 +104,22 @@
 		gamews.close();
 		location.href="GameSelection.html";	
 	}
-	
+	function SendPaper(){
+		sendMovement("1");
+	}
+	function SendRock(){
+		sendMovement("0");
+	}
+	function SendScissors(){
+		sendMovement("2");
+	}
+	function sendMovement(m){
+		var p={
+			TYPE: "MOVEMENT",
+			MOVE: m
+		};
+		gamews.send(JSON.stringify(p));
+	}
 	
 	
 	

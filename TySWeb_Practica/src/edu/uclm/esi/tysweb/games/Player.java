@@ -1,5 +1,7 @@
 package edu.uclm.esi.tysweb.games;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import edu.uclm.esi.tysweb.mongobd.dao.DAOPlayer;
 import edu.uclm.esi.tysweb.mongodb.MongoBroker;
 
@@ -14,7 +16,7 @@ public class Player {
 	private String idGoogle;
 	
 	private String photo;
-	
+	@JsonIgnore
 	private Match currentMatch;
 	
 	
@@ -91,5 +93,8 @@ public class Player {
 		this.currentMatch = match;
 	}
 	
+	public Match getCurrentMatch() {
+		return currentMatch;
+	}
 
 }

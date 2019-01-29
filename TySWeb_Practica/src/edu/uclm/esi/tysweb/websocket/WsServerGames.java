@@ -35,7 +35,7 @@ public class WsServerGames {
 		HttpSession httpSession = (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
 		httpSession.setAttribute("wsGameSession", session);
 		Player player = (Player) httpSession.getAttribute("player");
-		System.out.println("OPEN WS GAME");
+		System.out.println("OPEN WS GAME"+ player.getUserName());
 		players.put(session.getId(), player);
 		connections.put(session.getId(), session);
 	}
@@ -55,7 +55,10 @@ public class WsServerGames {
 				}
 				
 			}else if (jso.get("TYPE").equals("MOVEMENT")) {
-				
+				Player player = players.get(session.getId());
+				int [] coordinates = {Integer.parseInt(jso.getString("MOVE").toString())}; 
+				Match match = player.getCurrentMatch().move(player, coordinates);
+				send(match.getPlayers(), match);
 			}
 		} catch (Exception e) {
 			players.remove(session.getId());
@@ -81,7 +84,7 @@ public class WsServerGames {
 				s.getBasicRemote().sendText(jso.toString());
 			}
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 
