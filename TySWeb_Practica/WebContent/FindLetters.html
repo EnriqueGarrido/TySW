@@ -10,17 +10,17 @@
 			<h1 align="center" class="game-tittle">FIND PAIR OF LETTERS</h1>
 		</div>
 		<div class="FL_game">
-			<p id="Information">Score</p>
+			<p id="Information"></p>
 			<div class="FL_State">
 				<div class="FL_score">
 					<button onclick="LeaveGame()">Leave Game</button>
 					<p>Score</p>
 					<div class="score">
-						<p id="name_opponent">ANA</p>
+						<p id="name_opponent"></p>
 						<p id="score_opponent" class="score_display">0</p>
 					</div>
 					<div class="score">
-						<p id="name_player">PEPE</p>
+						<p id="name_player"></p>
 						<p id="score_player" class="score_display">0</p>
 					</div>
 				</div>
@@ -348,12 +348,79 @@
 			</div>
 		</div>
 	</div>
-	<script>
-	function LeaveGame(){
-		location.href="GameSelection.html"
+
+<script>
+var gamews = {};
+var information = document.getElementById("Information");
+var name_opponent = document.getElementById("name_opponent");
+var name_player = document.getElementById("name_player");
+
+window.onload = function(){
+	createWebsocket();	
+}
+
+function createWebsocket(){
+	var url = "ws://" + window.location.hostname + ":" + window.location.port + "/TySWeb_Practica/ws_games";
+	gamews = new WebSocket(url);
+	
+	gamews.onopen = function(){
+		beginMatch();
 	}
 	
-	</script>
+	gamews.onerror = function(){}
+	
+	gamews.onclose = function(){}
+	
+	gamews.onmessage = function(m){
+		var data = m.data;
+		data = JSON.parse(data);
+		
+		if(data.TYPE == "MATCH"){
+			if(data.currentPlayer == -1){
+				information.innerHTML= "PARTIDA COMENZADA";
+				name_player.innerHTML=sessionStorage.name;
+				
+				for (var i in data.players){
+					if ((sessionStorage.name)!=(data.players[i].userName)){
+						name_opponent.innerHTML= data.players[i].userName;
+					}
+				}	
+			}
+
+		}else if(data.TYPE == "INFORMATIVE"){
+				information.innerHTML= data.text;
+				name_player.innerHTML=sessionStorage.name;
+				name_opponent.innerHTML= "...";
+		}
+	}
+}
+
+window.onbeforeunload = function(){
+	gamews.close();
+}
+
+function LeaveGame(){
+	gamews.close();
+	location.href="GameSelection.html";
+}
+
+function beginMatch(){
+	var begin = {TYPE: "BEGIN_MATCH"}
+	gamews.send(JSON.stringify(begin));
+}
+
+window.onbeforeunload = function(){
+	gamews.close();
+}
+
+function EndGame(){
+	gamews.close();
+	location.href="EndScreen.html";	
+}
+
+</script>
+	
+	
 
 </body>
 </html>
