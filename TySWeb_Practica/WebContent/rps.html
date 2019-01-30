@@ -27,11 +27,11 @@
 				</div>
 				<div class="rps_move">
 					<div class="player_move">
-						<p class="move_election">Waiting movement</p>
+						<p class="move_election" id="opponent_move"></p>
 					</div>
 					<p class="versus">VS</p>
 					<div class="player_move">
-						<p class="move_election">Waiting movement</p>
+						<p class="move_election" id="player_movement"></p>
 					</div>
 					<div class="rps_options">
 						<img onclick= "SendPaper()" id="Paper" src="img/Paper.png"> 
@@ -49,7 +49,7 @@
 	var name_opponent = document.getElementById("name_opponent");
 	var name_player = document.getElementById("name_player");
 	var opponent_result = document.getElementById("opponent_move");
-    var player_result= document.getElementById("player_move");
+    var player_result= document.getElementById("player_movement");
     var turn=0;
 	
 	window.onload = function(){
@@ -122,25 +122,25 @@
 			TYPE: "MOVEMENT",
 			MOVE: m
 		};
+		//clearBoxes();
 		gamews.send(JSON.stringify(p));
 	}
 	
 	function proveResult(data){
-        if(turn < 3){
-            information.innerHTML= "TURNO DE " +data.players[data.currentPlayer].userName;
+		information.innerHTML= "TURNO DE " +data.players[data.currentPlayer].userName;
 
-            if (data.board.tiradas1[turn] != -1 && data.board.tiradas0[turn]!=-1 ){
-                if (data.players[0].userName == sessionStorage.name){
-                    player_result.innerHTML=getMovementbyIndex(data.board.tiradas0[turn]);
-                    opponent_result.innerHTML=getMovementbyIndex(data.board.tiradas1[turn]);
-                }else{
-                    player_result.innerHTML=getMovementbyIndex(data.board.tiradas1[turn]);
-                    opponent_result.innerHTML=getMovementbyIndex(data.board.tiradas0[turn]);
-                }
+        if (data.board.tiradas1[turn] != -1 && data.board.tiradas0[turn]!=-1 ){
+            if (data.players[0].userName == sessionStorage.name){
+                player_result.innerHTML=getMovementbyIndex(data.board.tiradas0[turn]);
+                opponent_result.innerHTML=getMovementbyIndex(data.board.tiradas1[turn]);
+            }else{
+                player_result.innerHTML=getMovementbyIndex(data.board.tiradas1[turn]);
+                opponent_result.innerHTML=getMovementbyIndex(data.board.tiradas0[turn]);
             }
-
-        }else{
-            LeaveGame();
+            turn++;
+            if (turn==3){
+            	 LeaveGame();
+            }
         }
 	}
 	
@@ -154,6 +154,11 @@
         }
         return "ERROR";
     }
+	function clearBoxes(){
+		player_result.innerHTML=" ";
+		opponent_result= " ";
+		
+	}
 	
 	
 	
