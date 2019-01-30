@@ -48,6 +48,9 @@
 	var information = document.getElementById("Information");
 	var name_opponent = document.getElementById("name_opponent");
 	var name_player = document.getElementById("name_player");
+	var opponent_result = document.getElementById("opponent_move");
+    var player_result= document.getElementById("player_move");
+    var turn=0;
 	
 	window.onload = function(){
 		createWebsocket();
@@ -81,7 +84,8 @@
 						}
 					}	
 				}else{
-					alert("JAJ")
+					proveResult(data);
+					//alert("JAJ")
 				}
 			}else if(data.TYPE == "INFORMATIVE"){
 					information.innerHTML= data.text;
@@ -120,6 +124,36 @@
 		};
 		gamews.send(JSON.stringify(p));
 	}
+	
+	function proveResult(data){
+        if(turn < 3){
+            information.innerHTML= "TURNO DE " +data.players[data.currentPlayer].userName;
+
+            if (data.board.tiradas1[turn] != -1 && data.board.tiradas0[turn]!=-1 ){
+                if (data.players[0].userName == sessionStorage.name){
+                    player_result.innerHTML=getMovementbyIndex(data.board.tiradas0[turn]);
+                    opponent_result.innerHTML=getMovementbyIndex(data.board.tiradas1[turn]);
+                }else{
+                    player_result.innerHTML=getMovementbyIndex(data.board.tiradas1[turn]);
+                    opponent_result.innerHTML=getMovementbyIndex(data.board.tiradas0[turn]);
+                }
+            }
+
+        }else{
+            LeaveGame();
+        }
+	}
+	
+	function getMovementbyIndex(index){
+        if (index==0){
+            return "ROCK";
+        }else if(index==1){
+            return "PAPER";
+        }else if(index==2){
+            return "SCISSORS";
+        }
+        return "ERROR";
+    }
 	
 	
 	
