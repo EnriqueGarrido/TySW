@@ -18,11 +18,9 @@
 					<p id=Information></p>
 					<div class="score">
 						<p id="name_opponent"></p>
-						<p id="score_opponent" class="score_display">0</p>
 					</div>
 					<div class="score">
 						<p id="name_player"></p>
-						<p id="score_player" class="score_display">0</p>
 					</div>
 				</div>
 				<div class="rps_move">
@@ -85,7 +83,6 @@
 					}	
 				}else{
 					proveResult(data);
-					//alert("JAJ")
 				}
 			}else if(data.TYPE == "INFORMATIVE"){
 					information.innerHTML= data.text;
@@ -140,8 +137,7 @@
             turn++;
             if (turn==3){
             	sessionStorage.winner = data.board.winner.userName;
-
-            	LeaveGame();
+            	EndGame();
             }
         }
 	}
@@ -160,6 +156,10 @@
 		player_result.innerHTML=" ";
 		opponent_result= " ";
 		
+	}
+	function EndGame(){
+		gamews.close();
+		location.href="EndScreen.html";	
 	}
 	
 	

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EndScreen - TGC</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+	<div class="login-page">
+  	<div class="form">
+  	<div class="recover-form">
+      	<h1 id= "Information"></h1>
+      	<br>
+      	<button onclick="goBack()">GO TO GAME SELECTION</button>
+    </div>
+  </div>
+</div>
+
+	<script>
+	var information = document.getElementById("Information");
+	window.onload = function(){
+		fillData();
+	
+	}
+	
+	function fillData(){
+		if(sessionStorage.winner == sessionStorage.name){
+			information.innerHTML = "You have won the match, " + sessionStorage.name;
+		}else if(sessionStorage.winner == "TIE_PLAYER"){
+			information.innerHTML = "You have tied the match, " + sessionStorage.name;
+		}else{
+			information.innerHTML = "You have lost the match, " + sessionStorage.name;
+		}
+	}
+	
+	function goBack(){
+		location.href="GameSelection.html";
+		sessionStorage.winner = "";
+	}
+	</script>
+</html>
+
