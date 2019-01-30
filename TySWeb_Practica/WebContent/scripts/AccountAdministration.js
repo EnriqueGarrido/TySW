@@ -93,8 +93,3 @@ function registerOrLogIn(idGoogle, name, email){
 	};
 	request.send("p="+JSON.stringify(p));
 }
-
-/* DEBERIA IR DONDE SE VAYA A SUBIR LA FOTO*/
-function uploadPhoto(){
-	
-}

@@ -14,7 +14,7 @@
 		String email = jso.optString("email");
 		
 		Player player = Manager.get().loginGoogle(idGoogle, name, email);
-		
+		session.setAttribute("player", player);
 		if(player == null)
 			throw new Exception("Error loging in with Google");
 		
