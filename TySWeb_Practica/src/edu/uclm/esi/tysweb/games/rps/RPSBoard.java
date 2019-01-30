@@ -62,6 +62,8 @@ public class RPSBoard extends Board{
 			victoriasB>victoriasA ? this.match.getPlayers().get(1) : new Player("TIE_PLAYER");
 	}
 	private boolean gana(int a, int b) {//INCOMPLETO VER TODOS LOS CASOS
+		//if(a == -1 || b == -1)
+			//return false;
 		if (a==PIEDRA && b == TIJERA) {
 			return true;
 		}
@@ -87,7 +89,7 @@ public class RPSBoard extends Board{
 		if(this.getWinner()!=null)
 			return true;
 		for(int i=0; i<tiradas0.length;i++)
-			if(tiradas0[i]== -1 || tiradas1[i]==1)
+			if(tiradas0[i]== -1 || tiradas1[i]== -1)
 				return false;
 		return true;
 	}
