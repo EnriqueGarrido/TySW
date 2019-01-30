@@ -139,7 +139,9 @@
             }
             turn++;
             if (turn==3){
-            	 LeaveGame();
+            	sessionStorage.winner = data.board.winner.userName;
+
+            	LeaveGame();
             }
         }
 	}

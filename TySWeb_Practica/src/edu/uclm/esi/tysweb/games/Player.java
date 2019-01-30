@@ -21,7 +21,7 @@ public class Player {
 	@JsonIgnore
 	private Match currentMatch;
 	
-	
+	@JsonIgnore
 	public String getPhotoStr() {
 		return photo;
 	}
@@ -29,6 +29,12 @@ public class Player {
 	public void setPhotoSrt(String photo) {
 		this.photo = photo;
 	}
+	
+	public Player(String name) {
+		this.user_name = name;
+	}
+	
+	public Player() {}
 
 	public String getIdGoogle() {
 		return idGoogle;
