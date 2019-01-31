@@ -2,6 +2,7 @@ package edu.uclm.esi.tysweb.games;
 
 import java.util.Hashtable;
 
+import edu.uclm.esi.tysweb.games.fpl.FPLGame;
 import edu.uclm.esi.tysweb.games.rps.RPSGame;
 
 public class GamesManager {
@@ -12,8 +13,8 @@ public class GamesManager {
 		games = new Hashtable<>();
 		Game rps = new RPSGame();
 		games.put(rps.getName(), rps);
-		//Game pair_of_letters = new POLGame();
-		//games.put(pair_of_letters.getName(), pair_of_letters);
+		Game pair_of_letters = new FPLGame();
+		games.put(pair_of_letters.getName(), pair_of_letters);
 	}
 
 	private static class ManagerHolder {

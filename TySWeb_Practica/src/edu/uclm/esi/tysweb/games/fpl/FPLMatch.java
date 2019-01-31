@@ -7,22 +7,27 @@ import edu.uclm.esi.tysweb.games.rps.RPSBoard;
 
 public class FPLMatch extends Match{
 
-	@Override
-	protected void save() throws Exception {
-		// TODO Auto-generated method stub
-		
+	public FPLMatch() {
+		super();
+		this.board = new FPLBoard(this);
 	}
 
 	@Override
 	public void calculateFirstPlayer() {
-		// TODO Auto-generated method stub
-		
+		//currentPlayer = 0;
 	}
 
 	@Override
 	public boolean tieneElTurno(Player player) {
-		// TODO Auto-generated method stub
+		if(currentPlayer == players.indexOf(player) || currentPlayer == -1)
+			return true;
 		return false;
+	}
+	
+	@Override
+	protected void save() throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

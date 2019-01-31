@@ -46,7 +46,7 @@ public class WsServerGames {
 			JSONObject jso = new JSONObject(message);
 			if(jso.get("TYPE").equals("BEGIN_MATCH")) {
 				Player player = players.get(session.getId());
-				Match match = GamesManager.get().joinGame(player, "Rock, Paper, Scissors.");
+				Match match = GamesManager.get().joinGame(player, jso.get("GAME").toString());
 				if (match.getPlayers().size()==2) {
 					send(match.getPlayers(), match);
 				}else {
@@ -66,6 +66,7 @@ public class WsServerGames {
 				
 			}
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			players.remove(session.getId());
 			connections.remove(session.getId());
 		}

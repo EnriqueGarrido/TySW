@@ -10,10 +10,12 @@ public class RPSMatch extends Match{
 		super();
 		this.board= new RPSBoard(this); 
 	}
+	
 	@Override
 	public void calculateFirstPlayer() {
-
+		//currentPlayer = 0;
 	}
+	
 	public boolean tieneElTurno(Player player) {
 		if(currentPlayer == players.indexOf(player) || currentPlayer == -1)
 			return true;
