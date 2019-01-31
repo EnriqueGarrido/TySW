@@ -16,6 +16,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -56,7 +57,11 @@ public class WsServerGames {
 				
 			}else if (jso.get("TYPE").equals("MOVEMENT")) {
 				Player player = players.get(session.getId());
-				int [] coordinates = {Integer.parseInt(jso.getString("MOVE").toString())}; 
+				JSONArray array = jso.getJSONArray("MOVE");
+				int[] coordinates = new int[array.length()];
+				for(int i = 0; i<array.length(); i++) {
+					coordinates[i] = array.getInt(i);
+				}
 				try {
 					Match match = player.getCurrentMatch().move(player, coordinates);
 					send(match.getPlayers(), match);

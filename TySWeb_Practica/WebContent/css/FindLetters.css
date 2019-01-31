@@ -67,13 +67,18 @@
 	margin: auto;
 	margin-right: 10px;
 	width: 50px;
-	height: 50px;;
-	/*background-color: red;*/
+	height: 50px;
 	background-color: white;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0
 		rgba(0, 0, 0, 0.24);
 	float: left;
 }
+.letter_display{
+	font-size: 40px;
+	font-weight: bold;
+	display: none;
+}
+
 .FL_game p{
 	font-family: "Dosis", sans-serif;
 	font-size: 20px;

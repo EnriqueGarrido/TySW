@@ -9,20 +9,46 @@ import edu.uclm.esi.tysweb.games.Player;
 public class FPLBoard extends Board{
 	
 	private char[] board_state;
+	private int score0;
+	private int score1;
+	private int[] pair;
 	
+	public int[] getPair() {
+		return pair;
+	}
+
 	public char[] getBoard_state() {
 		return board_state;
+	}
+
+	public int getScore0() {
+		return score0;
+	}
+
+	public int getScore1() {
+		return score1;
 	}
 
 	public FPLBoard(FPLMatch fplmatch) {
 		super(fplmatch);
 		this.board_state = fullfillBoard();
+		this.score0 = 0;
+		this.score1 = 0;
+		this.pair = new int[2];
 	}
 	
 	@Override
 	public void move(Player player, int[] coordinates) throws Exception {
-		// TODO Auto-generated method stub
-		
+		pair[0]=-1; pair[1]=-1;		// Control values, used to comunicate the pairs to clients
+		int option1 = coordinates[0], option2 = coordinates[1];
+		if (board_state[option1] == board_state[option2]) { // The pair is correct
+			pair[0]=option1; pair[1]=option2;	// if pair is matched, then is comunitated to clients
+			if(this.match.getPlayers().get(0) == player) {
+				score0++;
+			}else {
+				score1++;
+			}
+		}
 	}
 
 	@Override

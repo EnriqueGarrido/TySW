@@ -118,7 +118,7 @@
 	function sendMovement(m){
 		var p={
 			TYPE: "MOVEMENT",
-			MOVE: m
+			MOVE: [m]
 		};
 		//clearBoxes();
 		gamews.send(JSON.stringify(p));
