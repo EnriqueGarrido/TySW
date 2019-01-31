@@ -8,7 +8,7 @@ public abstract class Board {
 		this.match=match;
 	}
 
-	public abstract void move(Player player, String coordinates) throws Exception;
+	public abstract void move(Player player, int[] coordinates) throws Exception;
 	public abstract Player getWinner();
 	public abstract boolean end();
 }

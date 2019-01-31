@@ -17,13 +17,13 @@ public class RPSBoard extends Board{
 	}
 
 	@Override
-	public void move(Player player, String coordinates) throws Exception {
-		int pos = Integer.parseInt(coordinates);
+	public void move(Player player, int[] coordinates) throws Exception {
+		int pos;
 		if (this.match.getPlayers().get(0) == player) { // si es la misma referencia que player hago una cosa sino la
 														// otra.
-			pos = rellenar(tiradas0, pos);
+			pos = rellenar(tiradas0, coordinates[0]);
 		} else {
-			pos = rellenar(tiradas1, pos);
+			pos = rellenar(tiradas1, coordinates[0]);
 		}
 	}
 

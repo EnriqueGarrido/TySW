@@ -42,7 +42,7 @@ public abstract class Match {
 		return currentPlayer;
 	}
 
-	public Match move(Player player, String coordinates) throws Exception {
+	public Match move(Player player, int[] coordinates) throws Exception {
 		if (!tieneElTurno(player))
 			throw new Exception("You are not the current player");
 		if (this.board.end())

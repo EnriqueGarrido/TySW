@@ -56,7 +56,7 @@ public class WsServerGames {
 				
 			}else if (jso.get("TYPE").equals("MOVEMENT")) {
 				Player player = players.get(session.getId());
-				String coordinates = jso.getString("MOVE").toString(); 
+				int [] coordinates = {Integer.parseInt(jso.getString("MOVE").toString())}; 
 				try {
 					Match match = player.getCurrentMatch().move(player, coordinates);
 					send(match.getPlayers(), match);
