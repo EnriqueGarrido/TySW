@@ -12,7 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.Select;
 
-public class RPSGame {
+public class Chat {
   private WebDriver driver1;
   private WebDriver driver2;
   //private String baseUrl;
@@ -43,7 +43,6 @@ public class RPSGame {
     driver1.findElement(By.id("pass")).clear();
     driver1.findElement(By.id("pass")).sendKeys("hola");
     driver1.findElement(By.xpath("//button[@onclick='login()']")).click();
-    
     driver2.findElement(By.id("email")).click();
     driver2.findElement(By.id("email")).clear();
     driver2.findElement(By.id("email")).sendKeys("ana@nita.com");
@@ -51,16 +50,31 @@ public class RPSGame {
     driver2.findElement(By.id("pass")).clear();
     driver2.findElement(By.id("pass")).sendKeys("ana123");
     driver2.findElement(By.xpath("//button[@onclick='login()']")).click();
-    driver1.findElement(By.xpath("//button[@onclick='PlayRPS()']")).click();
+    driver1.findElement(By.xpath("//button[@onclick='LoadChat()']")).click();
     Thread.sleep(1000);
-    driver2.findElement(By.xpath("//button[@onclick='PlayRPS()']")).click();
+    driver2.findElement(By.xpath("//button[@onclick='LoadChat()']")).click();
     Thread.sleep(1000);
-    driver1.findElement(By.id("Rock")).click();
-    driver2.findElement(By.id("Scissors")).click();
-    driver1.findElement(By.id("Paper")).click();
-    driver2.findElement(By.id("Scissors")).click();
-    driver1.findElement(By.id("Scissors")).click();
-    driver2.findElement(By.id("Paper")).click();
+    driver1.findElement(By.id("usermsg")).sendKeys("Hola, ¿hay alguien?");
+    driver1.findElement(By.xpath("//button[@onclick='Send()']")).click();
+    Thread.sleep(1000);
+    driver2.findElement(By.id("usermsg")).sendKeys("Si, soy Ana");
+    driver2.findElement(By.xpath("//button[@onclick='Send()']")).click();
+    Thread.sleep(1000);
+    driver1.findElement(By.id("usermsg")).sendKeys("Encantado, ¿como estas?");
+    driver1.findElement(By.xpath("//button[@onclick='Send()']")).click();
+    Thread.sleep(1000);
+    driver2.findElement(By.id("usermsg")).sendKeys("Bien, aquí haciendo una práctica");
+    driver2.findElement(By.xpath("//button[@onclick='Send()']")).click();
+    Thread.sleep(1000);
+    driver1.findElement(By.id("usermsg")).sendKeys("Yo también");
+    driver1.findElement(By.xpath("//button[@onclick='Send()']")).click();
+    Thread.sleep(1000);
+    driver2.findElement(By.id("usermsg")).sendKeys("Seguro que sacamos un 10");
+    driver2.findElement(By.xpath("//button[@onclick='Send()']")).click();
+    Thread.sleep(1000);
+    driver1.findElement(By.id("usermsg")).sendKeys("Ójala");
+    driver1.findElement(By.xpath("//button[@onclick='Send()']")).click();
+    Thread.sleep(1000);
     Thread.sleep(1000);
   }
 
@@ -106,3 +120,4 @@ public class RPSGame {
     }
   }
 }
+
