@@ -19,11 +19,13 @@ public class LoginGame {
 
   @Before
   public void setUp() throws Exception {
-	System.setProperty("webdriver.chrome.driver", "D:\\Github\\TySWeb_Practica\\TySW\\Navegador\\chromedriver.exe");
-	driver = new ChromeDriver();
+	//System.setProperty("webdriver.chrome.driver", "D:\\Github\\TySWeb_Practica\\TySW\\Navegador\\chromedriver.exe");
+	//driver = new ChromeDriver();
+	System.setProperty("webdriver.gecko.driver", "D:\\Github\\TySWeb_Practica\\TySW\\\\Navegador\\geckodriver.exe");
+	driver = new FirefoxDriver();
     //driver = new FirefoxDriver();
     //baseUrl = "https://www.katalon.com/";
-    //driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
   @Test
@@ -36,7 +38,7 @@ public class LoginGame {
     driver.findElement(By.id("pass")).click();
     driver.findElement(By.id("pass")).clear();
     driver.findElement(By.id("pass")).sendKeys("ana123");
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='create'])[1]/following::button[1]")).click();
+    driver.findElement(By.xpath("//button[@onclick='login()']")).click();
   }
 
   @After
