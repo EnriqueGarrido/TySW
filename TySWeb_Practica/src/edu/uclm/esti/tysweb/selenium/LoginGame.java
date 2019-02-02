@@ -34,11 +34,11 @@ public class LoginGame {
     driver.findElement(By.id("email")).click();
     driver.findElement(By.id("email")).clear();
     driver.findElement(By.id("email")).sendKeys("ana@nita.com");
-    driver.findElement(By.id("email")).sendKeys(Keys.ENTER);
     driver.findElement(By.id("pass")).click();
     driver.findElement(By.id("pass")).clear();
     driver.findElement(By.id("pass")).sendKeys("ana123");
     driver.findElement(By.xpath("//button[@onclick='login()']")).click();
+    Thread.sleep(2000);
   }
 
   @After

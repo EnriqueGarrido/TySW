@@ -1,6 +1,7 @@
 package edu.uclm.esti.tysweb.selenium;
 
 import java.util.regex.Pattern;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -12,12 +13,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.Select;
 
-public class Chat {
+public class FPLGame {
   private WebDriver driver1;
   private WebDriver driver2;
-  //private String baseUrl;
+  private WebDriver driverchosen;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
+  private ArrayList<Integer> positions= new ArrayList<Integer>();
 
 @Before
   public void setUp() throws Exception {
@@ -26,8 +28,6 @@ public class Chat {
 	
 	System.setProperty("webdriver.gecko.driver", "D:\\Github\\TySWeb_Practica\\TySW\\Navegador\\geckodriver.exe");
 	driver2 = new FirefoxDriver();
-	//driver = new FirefoxDriver();
-    //baseUrl = "https://www.katalon.com/";
     driver1.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     driver2.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
   }
@@ -51,33 +51,36 @@ public class Chat {
     driver2.findElement(By.id("pass")).clear();
     driver2.findElement(By.id("pass")).sendKeys("ana123");
     driver2.findElement(By.xpath("//button[@onclick='login()']")).click();
+    driver1.findElement(By.xpath("//button[@onclick='FindLetters()']")).click();
     Thread.sleep(1000);
-    driver1.findElement(By.xpath("//button[@onclick='LoadChat()']")).click();
-    Thread.sleep(1000);
-    driver2.findElement(By.xpath("//button[@onclick='LoadChat()']")).click();
-    Thread.sleep(1000);
-    driver1.findElement(By.id("usermsg")).sendKeys("Hola, ¿hay alguien?");
-    driver1.findElement(By.xpath("//button[@onclick='Send()']")).click();
-    Thread.sleep(1000);
-    driver2.findElement(By.id("usermsg")).sendKeys("Si, soy Ana");
-    driver2.findElement(By.xpath("//button[@onclick='Send()']")).click();
-    Thread.sleep(1000);
-    driver1.findElement(By.id("usermsg")).sendKeys("Encantado, ¿como estas?");
-    driver1.findElement(By.xpath("//button[@onclick='Send()']")).click();
-    Thread.sleep(1000);
-    driver2.findElement(By.id("usermsg")).sendKeys("Bien, aquí haciendo una práctica");
-    driver2.findElement(By.xpath("//button[@onclick='Send()']")).click();
-    Thread.sleep(1000);
-    driver1.findElement(By.id("usermsg")).sendKeys("Yo también");
-    driver1.findElement(By.xpath("//button[@onclick='Send()']")).click();
-    Thread.sleep(1000);
-    driver2.findElement(By.id("usermsg")).sendKeys("Seguro que sacamos un 10");
-    driver2.findElement(By.xpath("//button[@onclick='Send()']")).click();
-    Thread.sleep(1000);
-    driver1.findElement(By.id("usermsg")).sendKeys("Ójala");
-    driver1.findElement(By.xpath("//button[@onclick='Send()']")).click();
-    Thread.sleep(1000);
-    Thread.sleep(1000);
+    driver2.findElement(By.xpath("//button[@onclick='FindLetters()']")).click();
+    Thread.sleep(3000);
+    driverchosen=driver1;
+    //driverchosen.findElement(By.id("1")).click();
+    for(int i=0; i<99; i++) {
+    	if (!positions.contains(i)) {
+    		for (int j=i+1; j<100; j++) {
+    			if(!positions.contains(j)) {
+    				if((driverchosen.findElement(By.id("option_letter"+j)).getAttribute("innerHTML")).equals(driverchosen.findElement(By.id("option_letter"+i)).getAttribute("innerHTML")))
+                	{
+            			System.out.println(driverchosen.findElement(By.id("option_letter"+i)).getAttribute("innerHTML"));
+            			System.out.println(driverchosen.findElement(By.id("option_letter"+j)).getAttribute("innerHTML"));
+            			driverchosen.findElement(By.id(""+i)).click();
+            			driverchosen.findElement(By.id(""+j)).click();
+            			positions.add(i);
+            			positions.add(j);
+            			if (driverchosen==driver1) {
+            				driverchosen=driver2;
+            			}else {
+            				driverchosen=driver1;
+            			}
+            			break;
+                	}
+    			}
+        	}
+    	}
+    }
+    Thread.sleep(4000);
   }
 
   @After

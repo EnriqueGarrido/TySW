@@ -26,8 +26,6 @@ public class RPSGame {
 	
 	System.setProperty("webdriver.gecko.driver", "D:\\Github\\TySWeb_Practica\\TySW\\Navegador\\geckodriver.exe");
 	driver2 = new FirefoxDriver();
-	//driver = new FirefoxDriver();
-    //baseUrl = "https://www.katalon.com/";
     driver1.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     driver2.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
   }
@@ -43,7 +41,7 @@ public class RPSGame {
     driver1.findElement(By.id("pass")).clear();
     driver1.findElement(By.id("pass")).sendKeys("hola");
     driver1.findElement(By.xpath("//button[@onclick='login()']")).click();
-    
+    Thread.sleep(1000);
     driver2.findElement(By.id("email")).click();
     driver2.findElement(By.id("email")).clear();
     driver2.findElement(By.id("email")).sendKeys("ana@nita.com");
@@ -51,17 +49,20 @@ public class RPSGame {
     driver2.findElement(By.id("pass")).clear();
     driver2.findElement(By.id("pass")).sendKeys("ana123");
     driver2.findElement(By.xpath("//button[@onclick='login()']")).click();
+    Thread.sleep(1000);
     driver1.findElement(By.xpath("//button[@onclick='PlayRPS()']")).click();
     Thread.sleep(1000);
     driver2.findElement(By.xpath("//button[@onclick='PlayRPS()']")).click();
     Thread.sleep(1000);
     driver1.findElement(By.id("Rock")).click();
     driver2.findElement(By.id("Scissors")).click();
+    Thread.sleep(1000);
     driver1.findElement(By.id("Paper")).click();
     driver2.findElement(By.id("Scissors")).click();
+    Thread.sleep(1000);
     driver1.findElement(By.id("Scissors")).click();
     driver2.findElement(By.id("Paper")).click();
-    Thread.sleep(1000);
+    Thread.sleep(2000);
   }
 
   @After
