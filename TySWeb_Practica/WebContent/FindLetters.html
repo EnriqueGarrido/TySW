@@ -471,7 +471,7 @@ function sendIfPossible(index){
 		block2.setAttribute("style", "display:none");
 		/////
 		isClickable[options_to_send[0]] = true;
-		isClickable[options_to_send[1]] = false;
+		isClickable[options_to_send[1]] = true;
 		options_to_send = new Array(2);
 	}
 	
@@ -502,8 +502,13 @@ function checkPair(data){
 }
 
 function proveResult(data){
-	turn = data.players[data.currentPlayer].userName;
-	information.innerHTML= "TURNO DE " + turn;
+	if(data.board.winner == null){
+		turn = data.players[data.currentPlayer].userName;
+		information.innerHTML= "TURNO DE " + turn;
+	}else{
+		sessionStorage.winner = data.board.winner.userName;
+    	EndGame();
+	}
 }
 
 function tieneTurno(){
@@ -512,6 +517,7 @@ function tieneTurno(){
 	else
 		return false;
 }
+
 
 </script>
 	
