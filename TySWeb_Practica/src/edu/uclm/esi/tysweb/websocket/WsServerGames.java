@@ -75,6 +75,14 @@ public class WsServerGames {
 				players.remove(session.getId());
 				connections.remove(session.getId());
 				send(match.getPlayers(), match);
+				
+			}else if(jso.get("TYPE").equals("START")) {
+				Player player = players.get(session.getId());
+				Match match = player.getCurrentMatch();
+				if(match.getCurrentPlayer() == -1) {
+					match.calculateFirstPlayer();
+					send(match.getPlayers(), match);					
+				}
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

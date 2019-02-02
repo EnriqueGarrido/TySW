@@ -33,7 +33,6 @@ public abstract class Game {
 			if (match.getPlayers().size()==this.numberOfPlayers) {
 				match=this.pendingMatches.remove(0);
 				inPlayMatches.put(match.getId(), match);
-				match.calculateFirstPlayer();
 				WsServerGames.send(match.getPlayers(), match);
 				
 			}

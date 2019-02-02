@@ -392,6 +392,7 @@ function createWebsocket(){
 					}
 				}
 				fullfillBoard(data.board.board_state);
+				sendMessage("START");
 			}else{
 				proveResult(data);
 				modifyScore(data);
@@ -407,19 +408,19 @@ function createWebsocket(){
 }
 
 window.onbeforeunload = function(){
-	sendQuit();
+	sendMessage("QUIT");
 	gamews.close();
 }
 
-function sendQuit(){
+function sendMessage(command){
 	var p = {
-			TYPE: "QUIT"
+			TYPE: command
 	}
 	gamews.send(JSON.stringify(p));
 }
 
 function LeaveGame(){
-	sendQuit();
+	sendMessage("QUIT");
 	gamews.close();
 	location.href="GameSelection.html";
 }
@@ -436,10 +437,6 @@ function fullfillBoard(board_state){
 		var letter = document.getElementById("option_letter"+ index);
 		letter.innerHTML = board_state[x];
 	}
-}
-/* NNNNEENENENENENENNEE */
-window.onbeforeunload = function(){
-	gamews.close();
 }
 
 function EndGame(){

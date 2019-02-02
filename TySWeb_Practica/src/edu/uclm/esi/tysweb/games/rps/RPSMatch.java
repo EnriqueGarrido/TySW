@@ -13,7 +13,7 @@ public class RPSMatch extends Match{
 	
 	@Override
 	public void calculateFirstPlayer() {
-		//currentPlayer = 0;
+		currentPlayer = 0;
 	}
 	
 	public boolean tieneElTurno(Player player) {

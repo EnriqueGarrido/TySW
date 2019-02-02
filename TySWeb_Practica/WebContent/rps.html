@@ -80,7 +80,8 @@
 						if ((sessionStorage.name)!=(data.players[i].userName)){
 							name_opponent.innerHTML= data.players[i].userName;
 						}
-					}	
+					}
+					sendMessage("START");
 				}else{
 					proveResult(data);
 				}
@@ -93,13 +94,13 @@
 	}
 	
 	window.onbeforeunload = function(){
-		sendQuit();
+		sendMessage("QUIT");
 		gamews.close();
 	}
 	
-	function sendQuit(){
+	function sendMessage(command){
 		var p = {
-				TYPE: "QUIT"
+				TYPE: command
 		}
 		gamews.send(JSON.stringify(p));
 	}
@@ -111,7 +112,7 @@
 	}
 	
 	function LeaveGame(){
-		sendQuit();
+		sendMessage("QUIT");
 		gamews.close();
 		location.href="GameSelection.html";	
 	}

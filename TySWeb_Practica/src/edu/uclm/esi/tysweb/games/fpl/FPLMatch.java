@@ -14,7 +14,7 @@ public class FPLMatch extends Match{
 
 	@Override
 	public void calculateFirstPlayer() {
-		//currentPlayer = 0;
+		currentPlayer = 0;
 	}
 
 	@Override

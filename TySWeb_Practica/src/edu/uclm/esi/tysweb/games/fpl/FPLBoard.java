@@ -37,6 +37,7 @@ public class FPLBoard extends Board{
 		this.score0 = 0;
 		this.score1 = 0;
 		this.pair = new int[2];
+		this.pair[0]=-1; this.pair[1]=-1;
 	}
 	
 	@Override
