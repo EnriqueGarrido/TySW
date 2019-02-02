@@ -2,6 +2,8 @@ package edu.uclm.esi.tysweb.mongodb;
 
 import com.mongodb.MongoClient;
 
+import edu.uclm.esi.tysweb.games.Result;
+
 public class MongoBroker {
 
 	private Pool pool;
@@ -25,4 +27,5 @@ public class MongoBroker {
 	public void close(MongoClient bd) {
 		this.pool.close(bd);
 	}
+
 }

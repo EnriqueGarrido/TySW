@@ -3,6 +3,7 @@ package edu.uclm.esi.tysweb.games.rps;
 import edu.uclm.esi.tysweb.games.Match;
 import edu.uclm.esi.tysweb.games.Player;
 import edu.uclm.esi.tysweb.games.Result;
+import edu.uclm.esi.tysweb.mongobd.dao.DAOMatch;
 
 public class RPSMatch extends Match{
 
@@ -23,14 +24,19 @@ public class RPSMatch extends Match{
 	}
 	@Override
 	protected void save() throws Exception{
-		Result result = new Result(this.getPlayers().get(0).getUserName(), this.getPlayers().get(1).getUserName(),this.winner.getUserName());
-		//MongoBroker.get().insert(result);
+		Result result = new Result(this);
+		DAOMatch.insert(result);
 	}
 
 	@Override
 	public void quitgame(Player player) {
 		int winnerIndex = (this.players.indexOf(player) + 1) % this.players.size();
 		this.winner = this.players.get(winnerIndex);
+		try {
+			save();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		this.players.remove(player);
 	}
 }

@@ -4,6 +4,8 @@ import edu.uclm.esi.tysweb.games.Match;
 import edu.uclm.esi.tysweb.games.Player;
 import edu.uclm.esi.tysweb.games.Result;
 import edu.uclm.esi.tysweb.games.rps.RPSBoard;
+import edu.uclm.esi.tysweb.mongobd.dao.DAOMatch;
+import edu.uclm.esi.tysweb.mongodb.MongoBroker;
 
 public class FPLMatch extends Match{
 
@@ -26,15 +28,20 @@ public class FPLMatch extends Match{
 	
 	@Override
 	protected void save() throws Exception {
-		// TODO Auto-generated method stub
-		
+		Result result = new Result(this);
+		DAOMatch.insert(result);
 	}
 
 	@Override
 	public void quitgame(Player player) {
 		int winnerIndex = (this.players.indexOf(player) + 1) % this.players.size();
-		this.players.remove(player);
 		this.winner = this.players.get(winnerIndex);
+		try {
+			save();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		this.players.remove(player);
 	}
 	
 }
