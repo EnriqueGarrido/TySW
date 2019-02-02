@@ -109,4 +109,9 @@ public class Player {
 		return currentMatch.tieneElTurno(this);
 	}
 
+	public Match quitgame() {
+		 this.currentMatch.quitgame(this);
+		 return this.currentMatch;
+	}
+
 }

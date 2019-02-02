@@ -63,4 +63,6 @@ public abstract class Match {
 		//MongoBroker, toma un objeto y lo guarda en la BD vamos a crear una clase enfrentamiento y vamos a almacenar esos objetos en la BD
 	public abstract void calculateFirstPlayer();
 	public abstract boolean tieneElTurno(Player player);
+
+	public abstract void quitgame(Player player);
 }

@@ -29,5 +29,12 @@ public class FPLMatch extends Match{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void quitgame(Player player) {
+		int winnerIndex = (this.players.indexOf(player) + 1) % this.players.size();
+		this.players.remove(player);
+		this.winner = this.players.get(winnerIndex);
+	}
 	
 }

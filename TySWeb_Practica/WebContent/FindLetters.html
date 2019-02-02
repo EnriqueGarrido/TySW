@@ -393,9 +393,9 @@ function createWebsocket(){
 				}
 				fullfillBoard(data.board.board_state);
 			}else{
+				proveResult(data);
 				modifyScore(data);
 				checkPair(data);
-				proveResult(data);
 			}
 
 		}else if(data.TYPE == "INFORMATIVE"){
@@ -407,10 +407,19 @@ function createWebsocket(){
 }
 
 window.onbeforeunload = function(){
+	sendQuit();
 	gamews.close();
 }
 
+function sendQuit(){
+	var p = {
+			TYPE: "QUIT"
+	}
+	gamews.send(JSON.stringify(p));
+}
+
 function LeaveGame(){
+	sendQuit();
 	gamews.close();
 	location.href="GameSelection.html";
 }
@@ -428,7 +437,7 @@ function fullfillBoard(board_state){
 		letter.innerHTML = board_state[x];
 	}
 }
-
+/* NNNNEENENENENENENNEE */
 window.onbeforeunload = function(){
 	gamews.close();
 }
@@ -502,11 +511,11 @@ function checkPair(data){
 }
 
 function proveResult(data){
-	if(data.board.winner == null){
+	if(data.winner == null){
 		turn = data.players[data.currentPlayer].userName;
 		information.innerHTML= "TURNO DE " + turn;
 	}else{
-		sessionStorage.winner = data.board.winner.userName;
+		sessionStorage.winner = data.winner.userName;
     	EndGame();
 	}
 }

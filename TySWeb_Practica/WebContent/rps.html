@@ -93,7 +93,15 @@
 	}
 	
 	window.onbeforeunload = function(){
+		sendQuit();
 		gamews.close();
+	}
+	
+	function sendQuit(){
+		var p = {
+				TYPE: "QUIT"
+		}
+		gamews.send(JSON.stringify(p));
 	}
 	
 	function beginMatch(){
@@ -101,8 +109,9 @@
 				GAME: "Rock, Paper, Scissors."}
 		gamews.send(JSON.stringify(begin));
 	}
-	//comment
+	
 	function LeaveGame(){
+		sendQuit();
 		gamews.close();
 		location.href="GameSelection.html";	
 	}
@@ -125,8 +134,13 @@
 	}
 	
 	function proveResult(data){
-		information.innerHTML= "TURNO DE " +data.players[data.currentPlayer].userName;
-
+        if (turn+1==3 || data.winner != null){
+        	sessionStorage.winner = data.winner.userName;
+        	EndGame();
+        }else{
+        	information.innerHTML= "TURNO DE " +data.players[data.currentPlayer].userName;
+        }
+       
         if (data.board.tiradas1[turn] != -1 && data.board.tiradas0[turn]!=-1 ){
             if (data.players[0].userName == sessionStorage.name){
                 player_result.innerHTML=getMovementbyIndex(data.board.tiradas0[turn]);
@@ -136,10 +150,6 @@
                 opponent_result.innerHTML=getMovementbyIndex(data.board.tiradas0[turn]);
             }
             turn++;
-            if (turn==3){
-            	sessionStorage.winner = data.board.winner.userName;
-            	EndGame();
-            }
         }
 	}
 	
