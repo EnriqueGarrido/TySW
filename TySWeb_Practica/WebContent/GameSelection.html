@@ -17,6 +17,7 @@
 				<p>Select the picture from your file system to update your profile icon.</p>
 				<input type="file" id="new_photo" accept="image/png, .jpeg, .jpg, .png">
 				<button onclick="changePhoto()">Change Photo</button>
+				<p class="warning-message" id="register-warning-message"></p>
 				<p class="change_photo">
 					<a href="#">Go back!</a>
 				</p>
@@ -99,6 +100,7 @@
 		
 		/*Se debe de llamar cuando se tenga la ruta de la imagen establecida*/
 		function changePhoto(){
+			var warning_message = document.getElementById("register-warning-message");
 			var file = new_photo.files[0];
 			var reader = new FileReader();
 			reader.onload=function(e){
@@ -111,6 +113,8 @@
 				blobReader.readAsArrayBuffer(blob);
 			};
 			reader.readAsArrayBuffer(file);
+			warning_message.innerHTML= "You must log out to see the changes";
+			warning_message.setAttribute("style", "display:block");
 		}
 		
 		function LoadChat(){
