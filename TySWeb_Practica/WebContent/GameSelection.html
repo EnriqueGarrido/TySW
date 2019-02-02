@@ -44,8 +44,8 @@
 			//user_name_text.innerHTML = localStorage.name;
 				//alert("Cookie: "+ getCookie("playerName"));
 				user_name_text.innerHTML = sessionStorage.name;
-			//if (localStorage.photo != "undefined"){
-			if (sessionStorage.photo != "undefined"){
+
+			if (sessionStorage.photo != undefined && sessionStorage.photo != "undefined"){
 				var img_user = document.getElementById("img-user");
 				//img_user.src = "data:image/jpeg;base64,"+localStorage.photo;
 				img_user.src = "data:image/jpeg;base64,"+sessionStorage.photo;
