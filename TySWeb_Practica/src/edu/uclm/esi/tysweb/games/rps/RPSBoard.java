@@ -61,9 +61,7 @@ public class RPSBoard extends Board{
 		return victoriasA>victoriasB ? this.match.getPlayers().get(0) : 
 			victoriasB>victoriasA ? this.match.getPlayers().get(1) : new Player("TIE_PLAYER");
 	}
-	private boolean gana(int a, int b) {//INCOMPLETO VER TODOS LOS CASOS
-		//if(a == -1 || b == -1)
-			//return false;
+	private boolean gana(int a, int b) {
 		if (a==PIEDRA && b == TIJERA) {
 			return true;
 		}

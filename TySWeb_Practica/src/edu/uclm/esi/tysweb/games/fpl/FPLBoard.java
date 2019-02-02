@@ -13,6 +13,8 @@ public class FPLBoard extends Board{
 	private int score1;
 	private int[] pair;
 	
+	private int numeroMax=50; // Half of the board as letters are shown twice
+	
 	public int[] getPair() {
 		return pair;
 	}
@@ -39,10 +41,10 @@ public class FPLBoard extends Board{
 	
 	@Override
 	public void move(Player player, int[] coordinates) throws Exception {
-		pair[0]=-1; pair[1]=-1;		// Control values, used to comunicate the pairs to clients
+		pair[0]=-1; pair[1]=-1;									// Control values, used to communicate the pairs to clients
 		int option1 = coordinates[0], option2 = coordinates[1];
-		if (board_state[option1] == board_state[option2]) { // The pair is correct
-			pair[0]=option1; pair[1]=option2;	// if pair is matched, then is comunitated to clients
+		if (board_state[option1] == board_state[option2]) { 	// The pair is correct
+			pair[0]=option1; pair[1]=option2;					// if pair is matched, then it is communicated to clients
 			if(this.match.getPlayers().get(0) == player) {
 				score0++;
 			}else {
@@ -53,20 +55,24 @@ public class FPLBoard extends Board{
 
 	@Override
 	public Player getWinner() {
-		// TODO Auto-generated method stub
+		if (end()) {
+			return score0>score1 ? this.match.getPlayers().get(0) : 
+				score1>score0 ? this.match.getPlayers().get(1) : 
+					new Player("TIE_PLAYER");
+		}
 		return null;
 	}
 
 	@Override
 	public boolean end() {
-		// TODO Auto-generated method stub
+		if(score0 + score1 == numeroMax)
+			return true;
 		return false;
 	}
 	
 	
 	private char[] fullfillBoard() {
 		char[] fullfilled;		
-		int numeroMax=50; // Half of the board as letters are shown twice
 		int num1Minus=97;
 		int num2Minus=122;
 		int num1Mayus=65;
