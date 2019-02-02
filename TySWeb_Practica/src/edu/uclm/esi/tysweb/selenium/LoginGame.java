@@ -21,8 +21,9 @@ public class LoginGame {
   public void setUp() throws Exception {
 	//System.setProperty("webdriver.chrome.driver", "D:\\Github\\TySWeb_Practica\\TySW\\Navegador\\chromedriver.exe");
 	//driver = new ChromeDriver();
-	System.setProperty("webdriver.gecko.driver", "D:\\Github\\TySWeb_Practica\\TySW\\\\Navegador\\geckodriver.exe");
-	driver = new FirefoxDriver();
+	System.setProperty("webdriver.chrome.driver", "..\\TySWeb_Practica\\src\\edu\\uclm\\esi\\tysweb\\selenium\\chromedriver.exe");
+	//System.setProperty("webdriver.gecko.driver", "D:\\Github\\TySWeb_Practica\\TySW\\\\Navegador\\geckodriver.exe");
+	driver = new ChromeDriver();
     //driver = new FirefoxDriver();
     //baseUrl = "https://www.katalon.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);

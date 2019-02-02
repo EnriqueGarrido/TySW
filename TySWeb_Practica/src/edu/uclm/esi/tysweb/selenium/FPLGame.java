@@ -23,10 +23,11 @@ public class FPLGame {
 
 @Before
   public void setUp() throws Exception {
-	System.setProperty("webdriver.chrome.driver", "D:\\Github\\TySWeb_Practica\\TySW\\Navegador\\chromedriver.exe");
+	//System.setProperty("webdriver.chrome.driver", "D:\\Github\\TySWeb_Practica\\TySW\\Navegador\\chromedriver.exe");
+	System.setProperty("webdriver.chrome.driver", "..\\TySWeb_Practica\\src\\edu\\uclm\\esi\\tysweb\\selenium\\chromedriver.exe");
 	driver1 = new ChromeDriver();
 	
-	System.setProperty("webdriver.gecko.driver", "D:\\Github\\TySWeb_Practica\\TySW\\Navegador\\geckodriver.exe");
+	System.setProperty("webdriver.gecko.driver", "..\\TySWeb_Practica\\src\\edu\\uclm\\esi\\tysweb\\selenium\\geckodriver.exe");
 	driver2 = new FirefoxDriver();
     driver1.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     driver2.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);

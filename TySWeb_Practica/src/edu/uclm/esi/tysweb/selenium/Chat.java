@@ -21,10 +21,12 @@ public class Chat {
 
 @Before
   public void setUp() throws Exception {
-	System.setProperty("webdriver.chrome.driver", "D:\\Github\\TySWeb_Practica\\TySW\\Navegador\\chromedriver.exe");
+	//System.setProperty("webdriver.chrome.driver", "D:\\Github\\TySWeb_Practica\\TySW\\Navegador\\chromedriver.exe");
+	System.setProperty("webdriver.chrome.driver", "..\\TySWeb_Practica\\src\\edu\\uclm\\esi\\tysweb\\selenium\\chromedriver.exe");
 	driver1 = new ChromeDriver();
 	
-	System.setProperty("webdriver.gecko.driver", "D:\\Github\\TySWeb_Practica\\TySW\\Navegador\\geckodriver.exe");
+	//System.setProperty("webdriver.gecko.driver", "D:\\Github\\TySWeb_Practica\\TySW\\Navegador\\geckodriver.exe");
+	System.setProperty("webdriver.gecko.driver", "..\\TySWeb_Practica\\src\\edu\\uclm\\esi\\tysweb\\selenium\\geckodriver.exe");
 	driver2 = new FirefoxDriver();
 	//driver = new FirefoxDriver();
     //baseUrl = "https://www.katalon.com/";
