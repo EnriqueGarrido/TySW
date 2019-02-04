@@ -93,7 +93,7 @@ public class FPLBoard extends Board{
 			}			
 		}
 		
-		//Collections.shuffle(vector);
+		Collections.shuffle(vector);
 		
 		fullfilled = new char[vector.size()];
 		
