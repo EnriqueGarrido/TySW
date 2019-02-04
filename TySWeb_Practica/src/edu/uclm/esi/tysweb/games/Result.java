@@ -14,7 +14,7 @@ public class Result {
 	public Result(Match match) {
 		this.userName1 = match.players.get(0).getEmail();
 		this.userName2 = match.players.get(1).getEmail();
-		this.winner = match.winner.getEmail();
+		this.winner = match.winner.getEmail() != null ? match.winner.getEmail() : "TIED MATCH";
 		this.time = System.currentTimeMillis();
 	}
 

@@ -64,7 +64,7 @@ public class RPSGame {
     Thread.sleep(1000);
     driver1.findElement(By.id("Scissors")).click();
     driver2.findElement(By.id("Paper")).click();
-    Thread.sleep(2000);
+    Thread.sleep(4000);
   }
 
   @After
