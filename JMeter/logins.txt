@@ -1,0 +1,13 @@
+p
+{"email":"ana@nita.com","pwd1":"ana123"}
+{"email":"elena@elena.com","pwd1":"hola"}
+{"email":"xexu@xexu.com","pwd1":"hola"}
+{"email":"julito@julito.com","pwd1":"hola"}
+{"email":"aitor@aitor.com","pwd1":"hola"}
+{"email":"nacho@nacho.com","pwd1":"hola"}
+{"email":"maria@maria.com","pwd1":"hola"}
+{"email":"lucia@lucia.com","pwd1":"hola"}
+{"email":"javi@javi.com","pwd1":"hola"}
+{"email":"isa@isa.com","pwd1":"hola"}
+{"email":"luis@luis.com","pwd1":"hola"}
+{"email":"alberto@alberto.com","pwd1":"hola"}

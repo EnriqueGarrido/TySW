@@ -1,0 +1,1 @@
+Los archivos logins.txt y registros.txt son los archivos CSV que leen los planes de pruebas login.jmx y register.jms repectivamente
