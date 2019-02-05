@@ -64,11 +64,8 @@ public class FPLGame {
     			if(!positions.contains(j)) {
     				if((driverchosen.findElement(By.id("option_letter"+j)).getAttribute("innerHTML")).equals(driverchosen.findElement(By.id("option_letter"+i)).getAttribute("innerHTML")))
                 	{
-            			System.out.println(driverchosen.findElement(By.id("option_letter"+i)).getAttribute("innerHTML"));
-            			System.out.println(driverchosen.findElement(By.id("option_letter"+j)).getAttribute("innerHTML"));
             			driverchosen.findElement(By.id(""+i)).click();
             			driverchosen.findElement(By.id(""+j)).click();
-            			//Thread.sleep(2000);
             			positions.add(i);
             			positions.add(j);
             			if (driverchosen==driver1) {
@@ -82,7 +79,7 @@ public class FPLGame {
         	}
     	}
     }
-    Thread.sleep(20000);
+    Thread.sleep(5000);
   }
 
   @After
